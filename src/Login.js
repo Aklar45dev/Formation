@@ -51,7 +51,8 @@ const Login = () => {
                 <button onClick={() => login()} className='logBtn'>Se connecter</button>
                 <button onClick={() => signin()} className='logBtn2'>S'inscrire</button>
             </div>
-            <div className='warning'>warning</div>
+            <div className='logLabel'>admin@gmail.com</div>
+            <div className='logLabel'>mdp: 123123</div>
         </div>
     )
 }

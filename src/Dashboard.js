@@ -58,7 +58,7 @@ const Dashboard = () => {
 
     const handleDelForm = async(id) => {
         let dbRef = db.collection('video').doc(id);
-        await dbRef.delete()
+        //await dbRef.delete()
     }
 
     const handleUpload = () => {

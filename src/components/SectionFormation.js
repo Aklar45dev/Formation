@@ -77,7 +77,7 @@ const SectionFormation = (props) => {
 
     const handleDel = async(id) => {
         let dbRef = db.collection('quiz').doc(id);
-        await dbRef.delete()
+        //await dbRef.delete()
     }
 
     return (
@@ -89,8 +89,9 @@ const SectionFormation = (props) => {
             </div>
             {edit ? <input type='text' className='inputBox' value={text} onChange={handleChange} autoFocus/> : <div/>}
             {props.type === 'video/mp4' ? <video alt='img' src={props.url} autoPlay muted loop/> : <img alt='img' src={props.url}/>}
+            <div className='sectionQuestion'>Questions:</div>
             {filteredQuizes && filteredQuizes.map(quiz => <Question updateAnsId={updateAnsId} editAns={editAns} delSec={handleDel} key={quiz.title} data={quiz} res='false' ansId={quiz.ansId} title={quiz.id}/>)}
-            <button className='delBtn' onClick={() => NewQuestion(quizObject)}>Nouvelle Question</button>
+            <button className='addBtn' onClick={() => NewQuestion(quizObject)}>Nouvelle Question</button>
         </div>
     )
 }
