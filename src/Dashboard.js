@@ -10,7 +10,7 @@ import ProfileFormationRow from './components/ProfileFormationRow'
 import GestionFormationRow from './components/GestionFormationRow'
 import SectionFormation from './components/SectionFormation'
 
-const Dashboard = () => {
+const Dashboard = () => { 
 
     $('html').css({'background-color':'rgb(0, 0, 0)'})
     $('html').css({'overflow-y':'scroll'})
