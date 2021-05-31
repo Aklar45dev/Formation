@@ -10,7 +10,7 @@ const Question = (props) => {
 
     const [edit, setEdit] = useState(false)
     const [text, setText] = useState('Question')
-
+    //console.log
     useEffect(() => {
       })
     
