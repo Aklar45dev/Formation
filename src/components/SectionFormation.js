@@ -17,11 +17,11 @@ const SectionFormation = (props) => {
     const quizObject = {
         a1: 'Choix 1',
         a2: 'Choix 2',
-        a3: 'Choix 3',
+        a3: 'Choix 3', 
         a4: 'Choix 4',
         title: 'Question',
         ansId: '0',
-        ownerId: ''
+        ownerId: '' 
     }
 
     let filteredQuizes = []

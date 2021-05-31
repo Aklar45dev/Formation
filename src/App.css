@@ -18,10 +18,10 @@ time, mark, audio, video {
 
 html{
   background-color: black;
-  overflow-y: hidden;
+  overflow-y: hidden; 
 }
 
-.App {
+.App {  
   display: flex;
   background-color: black;
   justify-items: center;

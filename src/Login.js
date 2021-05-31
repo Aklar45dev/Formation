@@ -6,7 +6,7 @@ const Login = () => {
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    
+
     const signin = () => {
         window.location.href = "/register";
     }
@@ -20,7 +20,7 @@ const Login = () => {
             else {
                 window.location.href = "/";
             }
-        })
+        }) 
         .catch((error) => {
             alert(error.message)
         })

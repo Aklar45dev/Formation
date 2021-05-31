@@ -14,7 +14,7 @@ const ProfileRow = (props) => {
                 <div className='profileRowText'>Resultat : {props.result}</div>
             </div>
             {props.state === 'failed' ? 
-            <div>
+            <div> 
                 <Question res='true' ansId='2' playerAnswer='2' title='Question 1 - Enonciation de la question'/>
                 <Question res='true' ansId='3' playerAnswer='1' title='Question 2 - Enonciation de la question'/>
                 <Question res='true' ansId='1' playerAnswer='3' title='Question 3 - Enonciation de la question'/>

@@ -6,7 +6,7 @@ const QuizElement = (props) => {
     const [text, setText] = useState(props.titre)
 
     let textInit = props.titre[0]
-
+ 
     useEffect(() => {
     })
 

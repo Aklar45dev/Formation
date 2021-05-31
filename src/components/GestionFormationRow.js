@@ -12,5 +12,5 @@ const GestionFormationRow = (props) => {
         </div>
     )
 }
-
+ 
 export default GestionFormationRow

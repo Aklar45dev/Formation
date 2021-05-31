@@ -23,7 +23,7 @@ const Gestionnaire = () => {
     const query = postRef.orderBy('createdAt', "desc")
     const [posts] = useCollectionData(query, {idField: 'id'})
 
-    const handleChange = e => {
+    const handleChange = e => { 
         if (e.target.files[0]){
             setImage(e.target.files[0])
             $('#fileName').html(e.target.files[0].name);

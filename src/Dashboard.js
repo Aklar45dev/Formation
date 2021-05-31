@@ -21,7 +21,7 @@ const Dashboard = () => {
         return () => {
             $('html').css({'overflow-y':'hidden'})
         }
-    }, [])
+    }, []) 
 
     const [image, setImage] = useState(null)
     const [contentType, setContentType] = useState('')

@@ -20,7 +20,7 @@ const App = () => {
   let menuOpen = false
   const [email, setEmail] = useState('')
 
-  $(() => {
+  $(() => {  
     $('#menu').slideUp(0)
     $('#menu-full-page').fadeOut(0)
     $("#burgerIcon").css({'display':'block'})

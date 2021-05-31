@@ -13,6 +13,6 @@ const FormationProgress = (props) => {
             <button className='progressRowBtn'>Accéder à la formation</button>
         </div>
     )
-}
+} 
 
 export default FormationProgress

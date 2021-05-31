@@ -13,7 +13,7 @@ const Post = (props) => {
         if(edit){
             props.edit(props.id, text)
             setEdit(false)
-        }
+        } 
         if(!edit){
             setEdit(true)
         } 

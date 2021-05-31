@@ -8,7 +8,7 @@ const ProfileRow = (props) => {
             <div className='profileRowText'>{props.lastname}</div>
             <button className='progressRowBtn'>Détails</button>
             <button className='progressRowBtn'>Contacter</button>
-        </div>
+        </div> 
     )
 }
 

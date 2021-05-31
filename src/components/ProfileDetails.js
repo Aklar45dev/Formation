@@ -12,7 +12,7 @@ const ProfileDetails = (props) => {
             <div className='profileVertiText'>Email: {props.email}</div>
             <div className='profileVertiText'>Formation: {props.formation}</div>
         </div>
-    )
+    ) 
 }
 
 export default ProfileDetails
