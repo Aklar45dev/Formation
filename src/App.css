@@ -33,10 +33,6 @@ html{
   pointer-events: none;
 }
 
-#dashboard{
-  padding-top: 4em;
-}
-
 .question-container{
   display: flex;
   width: 95%;
@@ -45,7 +41,27 @@ html{
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  margin-top: 3em;
+  margin-bottom: 2em;
+  padding-left: 0.5em;
+  padding-bottom: 2em;
+  border-radius: 1em;
+  border-style: solid;
+  color:rgb(173, 173, 173);
+  align-items: stretch;
+  background-color: #111111;
+}
+
+.question-container:last-child{
+  display: flex;
+  width: 95%;
+  margin-right: 2.5%;
+  margin-left: 2.5%;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 2em;
+  padding-left: 0.5em;
+  padding-bottom: 2em;
   border-radius: 1em;
   border-style: solid;
   color:rgb(173, 173, 173);
@@ -65,12 +81,18 @@ html{
 .answerText{
   padding-left: 1em;
   color: rgb(160, 160, 160);
+  margin: 0.6em;
 }
 
 .question-font{
   font-size: 2em;
   color: rgb(112, 112, 112);
   margin: 0.3em;
+}
+
+.profile-element{
+  margin-top: 2em;
+  margin-bottom: 10em;
 }
 
 .answerContainer{
@@ -96,7 +118,6 @@ html{
   height: 1em;
   width: 1em;
   border-radius: 4em;
-  margin-left: 1em;
 }
 
 .circle-green{
@@ -104,7 +125,6 @@ html{
   height: 1em;
   width: 1em;
   border-radius: 4em;
-  margin-left: 1em;
 }
 
 .validateQuestionBtn{
@@ -164,26 +184,19 @@ html{
 }
 
 .total{
-  background-color: #ffffff;
-  padding: 1em;
-  height: auto;
-  border-color: rgb(173, 173, 173);
-  border-width: 0.15rem;
-  margin: 0.2em;
   font-size: 2em;
   align-self: center;
   padding-left: 1em;
   padding-right: 1em;
   border-style: solid;
-  color:rgb(112, 112, 112);
+  color: rgb(112, 112, 112);
   width: auto;
-  margin-left: 40%;
-  margin-right: 40%;
-  margin-top: 2rem;
-  margin-bottom: 7rem;
+  position: absolute;
+  display: none;
+}
+
+.validRow{
   display: flex;
-  justify-content: space-around;
-  align-items: center;
 }
 
 .validateQuestionBtn:hover{
@@ -201,8 +214,13 @@ html{
 
 .progressRow{
   display: flex;
-  width: 100%;
+  width: 80%;
+  margin-right: 10%;
+  margin-left: 10%;
+  margin-bottom: 1em;
   justify-content: center;
+  background-color: rgb(40, 40, 40);
+  border-radius: 1em;
 }
 
 .profileRow{
@@ -225,18 +243,19 @@ html{
 .profileVerti{
   display: flex;
   flex-direction: column;
-  width: 60%;
+  width: 80%;
   justify-content: center;
   border-color: rgb(173, 173, 173);
   border-width: 0rem;
   border-radius: 1em;
-  margin-left: 20%;
-  margin-right: 20%;
+  margin-left: 10%;
+  margin-right: 10%;
   margin-bottom: 0.5em;
   border-style: solid;
   color:rgb(151, 151, 151);
   justify-content: start;
-  background-color: rgb(51, 51, 51);
+  background-color: rgb(40, 40, 40);
+  margin-bottom: 1em;
 }
 
 .wrapper{
@@ -287,7 +306,8 @@ html{
   height: auto;
   border-color: rgba(173, 173, 173, 0);
   border-width: 0.1em;
-  margin: 0.2em;
+  margin: 0.25em;
+  margin-bottom: 0.5em;
   font-size: 1.5em;
   align-self: right;
   padding-left: 1em;
@@ -297,6 +317,7 @@ html{
 .progressRowTitle{
   background-color: #1f1f1f;
   padding: 1em;
+  width: 17%;
   height: auto;
   border-color: rgb(173, 173, 173);
   margin: 0.2em;
@@ -306,11 +327,12 @@ html{
   padding-right: 2em;
   border-style: solid;
   color:rgb(112, 112, 112);
+  border-radius: 1em;
 }
 
 .progressRowBtn{
   background-color: #1f1f1f;
-  margin: 0.2em;
+  margin: 0.5em;
   font-size: 1.5em;
   height: auto;
   color:rgb(112, 112, 112);
@@ -332,8 +354,8 @@ html{
 
 .progressRowBar{
   height: auto;
-  width: 30%;
-  margin-left: 1em;
+  width: 20%;
+  margin-left: 3em;
   margin-right: 1em;
   color:rgb(24, 24, 24);
 }
@@ -342,6 +364,7 @@ html{
   font-size: 2em;
   align-self: center;
   margin: 0.5em;
+  width: 5.5%;
   color:rgb(112, 112, 112);
 }
 
@@ -370,7 +393,7 @@ progress::-webkit-progress-value {
   width: auto;
   margin-left: 10%;
   margin-right: 10%;
-  margin-top: 5rem;
+  margin-top: 2.5em;
   margin-bottom: 5rem;
   display: flex;
   flex-direction: column;
@@ -384,10 +407,20 @@ progress::-webkit-progress-value {
 }
 
 .sectionQuestion{
-  color:rgb(160, 160, 160);
+  color:rgb(255, 255, 255);
   font-size: 2.5em;
   margin-top: 1em;
   margin-left: 0.1em;
+  margin-bottom: 0.8em;
+
+}
+
+.sectionQuestion2{
+  color:rgb(255, 255, 255);
+  font-size: 2.5em;
+  margin-top: 0.1em;
+  margin-left: 0.1em;
+  margin-bottom: 0.8em;
 }
 
 
@@ -576,7 +609,7 @@ a {
 }
 
 .font-home{
-  font-size: 2em;
+  font-size: 1.9em;
   color:rgb(255, 255, 255);
   text-transform: uppercase;
   padding: 0.5em;
@@ -781,7 +814,7 @@ a {
   width: 35%;
   margin-left: 32.5%;
   margin-right: 32.5%;
-  margin-top: 1.2em;
+  margin-top: 0em;
   font-weight: 500;
   outline: none;
   cursor: pointer;
@@ -817,6 +850,8 @@ a {
 }
 
 .importContainer{
+  margin-left: 10%;
+  margin-top: 3em;
   align-content: stretch;
   display: inline-flex;
   flex-direction: row;
@@ -896,6 +931,24 @@ a {
   opacity: 0.7;
 }
 
+.profileBtn{
+  background-color: rgba(0, 0, 0, 0);
+  color: rgb(255, 255, 255);
+  padding: 0.4em;
+  margin-left: 0.5em;
+  border-radius: 0.5em;
+  cursor: pointer;
+  font-weight: 400;
+  font-size: 1.3em;
+  border-color: rgb(255, 255, 255);
+  border-width: 2px;
+  border-style: solid;
+}
+
+.profileBtn:hover{
+  opacity: 0.7;
+}
+
 .selectBtn{
   opacity: 1.0;
 }
@@ -919,8 +972,8 @@ label{
 
 #fileName{
   color: white;
-  margin-left: 0.3em;
-  padding-bottom: 0.5em;
+  margin-left: 10%;
+  margin-top: 0.5em;
 }
 
 #progBar{
@@ -968,7 +1021,7 @@ label{
   left: 2em;
   top: 2em;
   text-shadow: 2px 2px 2px #000;
-
+  display: none;
 }
 
 .moduleBtn button{
@@ -1037,12 +1090,12 @@ label{
   height: 100%;
   object-fit: cover;
   transition: all 0.3s;
-  filter: brightness(0.85);
+  filter: brightness(0.5);
 }
 
 .thumbnail .imgThumb:hover{
   transform: scale(1.2);
-  filter: brightness(0.4);
+  filter: brightness(0.2);
   transition: all 0.3s;
 }
 
@@ -1063,6 +1116,14 @@ label{
   box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.472) !important;
 }
 
+.icon-checkbox{
+  width: 0.8em !important;
+  transform: scale(1.5);
+  height: 0.8em;
+  border-radius: 0em !important;
+  box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.472) !important;
+}
+
 .thumbnail-text-container{
   background-image: radial-gradient(rgba(0, 0, 0, 0.4) 2%, rgba(0, 0, 0, 0.35) 40%, transparent 70%);
   display: grid;
@@ -1076,17 +1137,17 @@ label{
 
 ::-webkit-scrollbar {
   height: 8px;
-  width: 8px;
+  width: 10px;
 }
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: #e7e7e7; 
+  background: #ececec; 
 }
  
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: rgb(187, 187, 187); 
+  background: rgb(146, 146, 146); 
 }
 
 /* Handle on hover */
@@ -1191,7 +1252,7 @@ label{
   margin: 1em;
   margin-right: 0;
   margin-bottom: 0;
-  height: auto;
+  height: 90%;
   border-radius: 2rem;
   overflow: hidden;
   display: flex;

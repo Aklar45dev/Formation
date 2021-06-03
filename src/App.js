@@ -5,10 +5,12 @@ import './main.js'
 import Home from './Home'
 import About from './About'
 import Module from './Module'
+import Profil from './Profil'
 import Modules from './Modules'
 import Gestionnaire from './Gestionnaire'
 import Presentation from './Presentation'
 import Dashboard from './Dashboard'
+import ProfilAdmin from './ProfilAdmin'
 import Login from './Login'
 import Register from './SignIn'
 import $ from 'jquery'
@@ -33,10 +35,9 @@ const App = () => {
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
         setEmail(user.email)
-      } 
+      }
     })
   })
-
 
   const toggleMenu = () => {
     if(!menuOpen)
@@ -80,31 +81,26 @@ const App = () => {
           <div className='item-container'>
             {email === 'admin@gmail.com' ? <div className='item-row' onClick={() => toggleMenu()}>
               <img alt="img" src='./images/admin.png' />
-              <Link className="menu-text" to="/dashboard">Admin</Link>
-            </div> : <div/>}
-            {email === 'admin@gmail.com' ? <div className='item-row' onClick={() => toggleMenu()}>
-              <img alt="img" src='./images/manager.png' />
-              <Link className="menu-text" to="/gestionnaire">Gestionnaire</Link>
+              <Link className="menu-text" to="/dashboard">Administrateur</Link>
             </div> : <div/>}
             <div className='item-row' onClick={() => toggleMenu()}>
               <img alt="img" src='./images/home.png' />
               <Link className="menu-text" to="/">Accueil</Link>
             </div>
             <div className='item-row' onClick={() => toggleMenu()}>
+              <img alt="img" src='./images/profil.png' />
+              <Link className="menu-text" to={{
+                pathname: "/profile",
+                email: email
+                }}>Profile</Link>
+            </div>
+            <div className='item-row' onClick={() => toggleMenu()}>
               <img alt="img" src='./images/play.png' />
-              <Link className="menu-text" to="/module">Modules</Link>
-            </div>
-            <div className='item-row' onClick={() => toggleMenu()}>
-              <img alt="img" src='./images/blog.png' />
-              <Link className="menu-text" to="/presentation">Présentation</Link>
-            </div>
-            <div className='item-row' onClick={() => toggleMenu()}>
-              <img alt="img" src='./images/about.png' />
-              <Link className="menu-text" to="/about">À Propos</Link>
+              <Link className="menu-text" to="/module">Formations</Link>
             </div>
             <div className='item-row' onClick={() => toggleMenu()}>
               <img alt="img" src='./images/login.png' />
-              <Link to="./login" onClick={() => logout()} className="menu-text">Quitter</Link>
+              <Link to="./login" onClick={() => logout()} className="menu-text">Déconnecter</Link>
             </div>
           </div>
         </div>
@@ -115,10 +111,12 @@ const App = () => {
         <Route path='/' component={Login}/>
       </Switch> : 
       <Switch>
+        <Route path='/profile' component={Profil} />
         <Route path='/module/:id' component={Module} />
         <Route path='/module' component={Modules} />
         <Route path='/about' component={About} />
-        <Route path='/dashboard' component={Dashboard} />
+        {email === 'admin@gmail.com' ?  <Route path='/dashboard/profiles' component={ProfilAdmin} /> : <Route path='/' component={Home} />}
+        {email === 'admin@gmail.com' ?  <Route path='/dashboard' component={Dashboard} /> : <Route path='/' component={Home} />}
         <Route path='/gestionnaire' component={Gestionnaire} />
         <Route path='/presentation' component={Presentation} />
         <Route path='/login' component={Login} />
@@ -135,3 +133,16 @@ const App = () => {
 
 export default App;
 //{email === '' ? <Redirect to='/register'/> : <Redirect to='/'/>}
+
+/*<div className='item-row' onClick={() => toggleMenu()}>
+              <img alt="img" src='./images/about.png' />
+              <Link className="menu-text" to='/about'>À Propos</Link>
+            </div>
+{email === 'admin@gmail.com' ? <div className='item-row' onClick={() => toggleMenu()}>
+              <img alt="img" src='./images/manager.png' />
+              <Link className="menu-text" to="/gestionnaire">Gestionnaire Coiffure</Link>
+            </div> : <div/>}
+            <div className='item-row' onClick={() => toggleMenu()}>
+              <img alt="img" src='./images/blog.png' />
+              <Link className="menu-text" to="/presentation">Présentation Coiffure</Link>
+            </div>*/

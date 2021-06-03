@@ -2,7 +2,7 @@ import React from 'react'
 import $ from 'jquery'
 import VideoToolBar from './VideoToolBar'
 
-const VideoPlayer = ({src}) => {
+const VideoPlayer = ({src, title}) => {
 
     let videoPlaying = true
 
@@ -58,7 +58,7 @@ const VideoPlayer = ({src}) => {
 
     return (
         <div className="video-container" onMouseMove={()=> mouseMove()}>
-            <video onEnded={() => showTest()} id="mainVideo" src={src} preload="auto" autoPlay='auto'/>
+            <video onEnded={() => showTest()} id="mainVideo" src={src} preload="auto"/>
             <div className='controls-container' id='playerControlsContainer'>
                 <button onClick={() => HandleJump(false)}>
                     <img src="/images/previous.png" width="90" height="90" alt="play" />
@@ -70,7 +70,7 @@ const VideoPlayer = ({src}) => {
                     <img src="/images/next.png" width="90" height="90" alt="play" />
                 </button>
             </div>
-            <VideoToolBar/>
+            <VideoToolBar title={title}/>
         </div>
     )
 

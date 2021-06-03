@@ -1,30 +1,124 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import VideoPlayer from './components/VideoPlayer'
 import Thumbnail from './components/Thumbnail'
-import Test from './components/Test'
 import $ from 'jquery'
-import {useParams} from 'react-router-dom' 
-
+import firebase, { firestore, db } from './firebase'
+import { useCollectionData } from 'react-firebase-hooks/firestore'
+import { useLocation } from 'react-router-dom'
+import Question from './components/Question'
 
 const Module = () => {
 
+
+    const [valid, setValid] = useState(false)
+
     let thumbnailVisible = false
-    let { id } = useParams()
-    let videos = [
-        'https://firebasestorage.googleapis.com/v0/b/cfpvd-8e8aa.appspot.com/o/videos%2Fmovie1.mp4?alt=media&token=7cf53e2a-2923-4bbe-b3a0-4266ffa6cba6',
-        'https://firebasestorage.googleapis.com/v0/b/cfpvd-8e8aa.appspot.com/o/videos%2Fmovie2.mp4?alt=media&token=f94b484b-6183-4a0d-bccb-0433325690a7',
-        'https://firebasestorage.googleapis.com/v0/b/cfpvd-8e8aa.appspot.com/o/videos%2Fmovie3.mp4?alt=media&token=403f02f7-c833-42d9-91bf-b2c34da15eca',
-        'https://firebasestorage.googleapis.com/v0/b/cfpvd-8e8aa.appspot.com/o/videos%2Fmovie4.mp4?alt=media&token=0d39e8ec-2c26-447e-a085-c9cb53f5765e',
-        'https://firebasestorage.googleapis.com/v0/b/cfpvd-8e8aa.appspot.com/o/videos%2Fmovie5.mp4?alt=media&token=37cc92ae-8633-45ad-82e9-fcdd168548bd',
-        'https://firebasestorage.googleapis.com/v0/b/cfpvd-8e8aa.appspot.com/o/videos%2Fmovie6.mp4?alt=media&token=4d061d2c-6702-45d0-b93b-0f484b14c0dc'
-        ]
+    let filteredQuizes = []
+    let validatedQuizeStates = []
+    let good = 0
 
     $('html').css({'background-color':'rgb(0, 0, 0)'})
-    
+    $('html').css({'overflow-y':'scroll'})
 
     useEffect(() => {
         $('#thumbnails').slideUp(0)
       }, [])
+
+    //get videos
+    const videoRef = firestore.collection('video')
+    const query = videoRef.orderBy('createdAt', "asc")
+    const [videos] = useCollectionData(query, {idField: 'id'})
+    const location = useLocation()
+    let pathId = location.pathname.replace('/module/','')
+    let mainUrl = ''
+    let videoId = ''
+    let videoTitle = ''
+
+    //get questions
+    const quizRef = firestore.collection('quiz')
+    const queryQuiz = quizRef.orderBy('createdAt', "asc")
+    const [quizes] = useCollectionData(queryQuiz, {idField: 'id'})
+
+    const profileRef = firestore.collection('profiles')
+    const queryProfile = profileRef.orderBy('createdAt', "asc")
+    const [profiles] = useCollectionData(queryProfile, {idField: 'id'})
+
+
+    if(videos !== undefined){
+        videos.forEach(video => {
+            if(pathId === video.title)
+            {
+                videoTitle = video.title
+                mainUrl =  video.url
+                videoId = video.id
+            } 
+        })
+        if(quizes !== undefined)
+        {
+            for (const quiz of quizes) 
+            {
+                if(videoId === quiz.ownerId)
+                {
+                    filteredQuizes.push(quiz)
+                    validatedQuizeStates.push({[quiz.id]:''})
+                }
+            }
+        }
+    }
+
+    const preValidate = (id, state) => {
+        validatedQuizeStates.forEach(quiz => {
+            if(Object.entries(quiz)[0][0] === id)
+            {
+                quiz[id] = state
+            }
+        })
+    }
+
+    const valider = async() => {
+        if(valid)
+        {
+            window.location.href = '/module'
+        }
+        let isCompleted = true
+        validatedQuizeStates.forEach(state => {
+            if (Object.values(state)[0] === '') {
+                isCompleted = false
+                return
+            }
+        })
+        if(isCompleted){
+            if(profiles !== undefined){
+                firebase.auth().onAuthStateChanged(user => {
+                    if (user) {
+                        profiles.forEach(profile => {
+                            if(profile.email === user.email)
+                            {
+                                setValid(true)
+                                validatedQuizeStates.forEach(state => {
+                                    if(Object.values(state)[0] === true){
+                                        good++ 
+                                    }            
+                                })
+                                $('#score').css({'display':'block'})
+                                $('#score').html('Total: ' + good + '/' + validatedQuizeStates.length)
+                                $('#validBtn').html("Continuer")
+                                updateTest(profile.id, videoTitle, ((good/validatedQuizeStates.length)*100))
+                                
+                            }
+                        })
+                    }
+                })
+            }
+        }
+    }
+
+    const updateTest = async(id, field, data) => {
+        let dbRef = db.collection('profiles').doc(id);
+        await dbRef.update({
+            [field]: data
+        })
+    }
 
     const showThumbnails = () => {
         if(thumbnailVisible)
@@ -44,19 +138,21 @@ const Module = () => {
     return (
         <div>
             <div className="main-container">
-                <VideoPlayer src={videos[id-1]} id={'MainPlayer'} />
-                <Test moduleId={id}/>
+                <VideoPlayer title={pathId} src={mainUrl} id={'MainPlayer'} />
             </div>
             <div className="moduleBtn">
                 <button id='moduleBtn' onClick={() => showThumbnails()}>▼</button>
             </div>
             <div className='thumbnail-container' id="thumbnails">
-                <Thumbnail src='https://firebasestorage.googleapis.com/v0/b/cfpvd-8e8aa.appspot.com/o/Images%2Fthumbnail1.png?alt=media&token=03acd13c-39c8-40a4-a889-7a5f7b0190d5' module='1' title='Inspection de véhicule' hideThumbnails={showThumbnails} />
-                <Thumbnail src='https://firebasestorage.googleapis.com/v0/b/cfpvd-8e8aa.appspot.com/o/Images%2Fthumbnail2.png?alt=media&token=9535bcc7-1137-4d1c-bfac-81874ef5a319' module='2' title='Conduite de véhicule' hideThumbnails={showThumbnails} />
-                <Thumbnail src='https://firebasestorage.googleapis.com/v0/b/cfpvd-8e8aa.appspot.com/o/Images%2Fthumbnail3.png?alt=media&token=bb1eee53-37d0-4e20-b246-f38b2334e9f9' module='3' title='Signalisation' hideThumbnails={showThumbnails} />
-                <Thumbnail src='https://firebasestorage.googleapis.com/v0/b/cfpvd-8e8aa.appspot.com/o/Images%2Fthumbnail4.png?alt=media&token=eba7620c-c3aa-4b61-af54-ef1c537fad17' module='4' title='Sécurité' hideThumbnails={showThumbnails} />
-                <Thumbnail src='https://firebasestorage.googleapis.com/v0/b/cfpvd-8e8aa.appspot.com/o/Images%2Fthumbnail5.png?alt=media&token=62798c84-076d-45a7-93bc-0ac019eb61f2' module='5' title="Téléopération" hideThumbnails={showThumbnails} />
-                <Thumbnail src='https://firebasestorage.googleapis.com/v0/b/cfpvd-8e8aa.appspot.com/o/Images%2Fthumbnail6.png?alt=media&token=580988f9-1a5d-424e-bea6-31d54e5767f5' module='6' title='Maintenance de base' hideThumbnails={showThumbnails} />
+                {videos && videos.map(video => <Thumbnail key={video.title} src={video.url} module='1' title={video.title} hideThumbnails={showThumbnails} />)}
+            </div>
+            <div className='sectionWrapper'>
+                <div className='sectionQuestion2'>Questions:</div>
+                {filteredQuizes && filteredQuizes.map(quiz => <Question edit='false' preValidate={preValidate} valid={valid} key={quiz.title} data={quiz} res='false' ansId={quiz.ansId} title={quiz.id}/>)}
+                <div className='validRow'>
+                    <div className='total' id='score'>Total: 1/2</div>
+                    <button className='addBtn' id='validBtn' onClick={() => valider()}>Valider</button>
+                </div>
             </div>
         </div>
     )

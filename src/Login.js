@@ -52,7 +52,7 @@ const Login = () => {
                 <button onClick={() => signin()} className='logBtn2'>S'inscrire</button>
             </div>
             <div className='logLabel'>admin@gmail.com</div>
-            <div className='logLabel'>mdp: 123123</div>
+            <div className='logLabel'>123123</div>
         </div>
     )
 }

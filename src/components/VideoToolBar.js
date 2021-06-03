@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react' 
 import {useParams} from 'react-router-dom' 
 
-
-const VideoToolBar = () => {
+const VideoToolBar = (props) => {
     useEffect(() => {
         const interval = setInterval(() => {
             let mins = Math.floor((document.getElementById("mainVideo").duration)/60)
@@ -47,8 +46,7 @@ const VideoToolBar = () => {
             </div>
             <div className="lowerMenu">
                 <div className="infoModule">
-                    <div className="moduleText">Module {id}</div>
-                    <div className="nomModuleText">{titles[id-1]}</div>
+                    <div className="nomModuleText">{props.title}</div>
                 </div>
             </div>
         </div>

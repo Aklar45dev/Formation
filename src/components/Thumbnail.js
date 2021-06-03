@@ -11,12 +11,11 @@ const Thumbnail = ({src, module, title, hideThumbnails}) => {
     return (
 
         <div className='thumbnail' onClick={() => hideThumbnails()}>
-            <Link to={`/module/${module}`}>
-                <img alt="img" className='imgThumb' src={src} />
+            <Link to={`/module/${title}`}>
+                <video autoPlay alt="img" className='imgThumb' src={src} muted loop/>
             </Link>
             <img alt="img" className='playIcon' src="./images/play.png" />
             <div className='thumbnail-text-container'>
-                <p className="moduleText">{`Module ${module}`}</p>
                 <p className="nomModuleText">{title}</p>
             </div>
         </div>

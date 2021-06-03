@@ -1,20 +1,39 @@
 import React, { useState } from 'react'
 import $ from 'jquery'
 import firebase from './firebase'
+import { firestore } from './firebase'
 
 const SignIn = () => {
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const signUp = () => {
+    const [name, setName] = useState('')
+    const [lastname, setLastname] = useState('')
+    const profileRef = firestore.collection('profiles')
+
+    const signUp = async() => {
         firebase.auth().createUserWithEmailAndPassword(email, password)
             .then((userCredential) => {
-                window.location.href = './'
+                sendProfil()
                 // Signed in 
             })
             .catch((error) => {
                 alert(error.message)
             })
+    }
+
+    const sendProfil = async() => {
+        await profileRef.add({
+            createdAt: Date.now(),
+            name: name,
+            lastname: lastname,
+            email: email,
+            formation: 'En cours',
+        })
+        .then(() => {
+            window.location.href = './'
+        })
+        
     }
 
     const login = () => {
@@ -31,6 +50,15 @@ const SignIn = () => {
         setPassword(e.target.value)
     }
 
+    const handleChangeName = e => {
+        setName(e.target.value)
+    }
+
+    const handleChangeLastname = e => {
+        setLastname(e.target.value)
+    }
+
+
     $('html').css({'background-color':'black'})
     $('html').css({'overflow-y':'scroll'})
 
@@ -39,11 +67,11 @@ const SignIn = () => {
             <h1 className='connection'>Inscription</h1>
             <div>
                 <p className='logLabel'>Nom:</p>
-                <input className='inputBoxLog' type='text'/>
+                <input className='inputBoxLog' type='text' onChange={handleChangeName}/>
             </div>
             <div>
                 <p className='logLabel'>Prénom:</p>
-                <input className='inputBoxLog' type='text'/>
+                <input className='inputBoxLog' type='text' onChange={handleChangeLastname}/>
             </div>
             <div>
                 <p className='logLabel'>Courriel:</p>

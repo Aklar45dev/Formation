@@ -10,7 +10,7 @@ const Question = (props) => {
 
     const [edit, setEdit] = useState(false)
     const [text, setText] = useState('Question')
-    //console.log 
+
     useEffect(() => {
       })
     
@@ -69,15 +69,19 @@ const Question = (props) => {
         }
     }
 
+    const checkAns = (result) => {
+        props.preValidate(props.data.id, result)
+    }
+
     return (
         <div className='question-container'>
             <div className='title-container'>
                 <p className='question-font'>{title}</p>
-                <button onClick={() => editTitle()} title='Modifier' className='editBtn'><img alt='img' className="icon" src='./images/edit.png' /></button>
-                <button title='Supprimer Question' onClick={() => delsection()} className='editBtn'><img alt='img' className="icon" src='./images/trash.png' /></button>
+                {props.edit === 'true' ? <button onClick={() => editTitle()} title='Modifier' className='editBtn'><img alt='img' className="icon" src='./images/edit.png' /></button> : <div/>}
+                {props.edit === 'true' ? <button title='Supprimer Question' onClick={() => delsection()} className='editBtn'><img alt='img' className="icon" src='./images/trash.png' /></button> : <div/>}
             </div>
             {edit ? <input type='text' className='inputBox' value={text} onChange={handleChange} autoFocus/> : <div/>}
-            {quiz && quiz.map(post => <QuizElement res='false' root={root} key={Object.entries(post)[0][0]} updateAnsId={props.updateAnsId} editAns={props.editAns} titre={Object.values(post)} ansId={ansId} SectionId={Object.entries(post)[0][0]}/>)}
+            {quiz && quiz.map(post => <QuizElement edit={props.edit} valid={props.valid} checkAns={checkAns} root={root} key={Object.entries(post)[0][0]} updateAnsId={props.updateAnsId} editAns={props.editAns} titre={Object.values(post)} ansId={ansId} SectionId={Object.entries(post)[0][0]}/>)}
         </div>
     )
 }

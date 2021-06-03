@@ -7,12 +7,14 @@ const SectionFormation = (props) => {
 
     const [edit, setEdit] = useState(false)
     const [text, setText] = useState(props.title)
+    const [valid, setValid] = useState('false')
 
     //get questions
     const quizRef = firestore.collection('quiz')
     const query = quizRef.orderBy('createdAt', "asc")
     const [quizes] = useCollectionData(query, {idField: 'id'})
     const postRef = firestore.collection('quiz')
+    
 
     const quizObject = {
         a1: 'Choix 1',
@@ -77,7 +79,7 @@ const SectionFormation = (props) => {
 
     const handleDel = async(id) => {
         let dbRef = db.collection('quiz').doc(id);
-        //await dbRef.delete()
+        await dbRef.delete()
     }
 
     return (
@@ -90,7 +92,7 @@ const SectionFormation = (props) => {
             {edit ? <input type='text' className='inputBox' value={text} onChange={handleChange} autoFocus/> : <div/>}
             {props.type === 'video/mp4' ? <video alt='img' src={props.url} autoPlay muted loop/> : <img alt='img' src={props.url}/>}
             <div className='sectionQuestion'>Questions:</div>
-            {filteredQuizes && filteredQuizes.map(quiz => <Question updateAnsId={updateAnsId} editAns={editAns} delSec={handleDel} key={quiz.title} data={quiz} res='false' ansId={quiz.ansId} title={quiz.id}/>)}
+            {filteredQuizes && filteredQuizes.map(quiz => <Question valid={valid} edit={props.edit} updateAnsId={updateAnsId} editAns={editAns} delSec={handleDel} key={quiz.title} data={quiz} admin='false' ansId={quiz.ansId} title={quiz.id}/>)}
             <button className='addBtn' onClick={() => NewQuestion(quizObject)}>Nouvelle Question</button>
         </div>
     )

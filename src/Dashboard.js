@@ -9,6 +9,8 @@ import ProfileDetails from './components/ProfileDetails'
 import ProfileFormationRow from './components/ProfileFormationRow'
 import GestionFormationRow from './components/GestionFormationRow'
 import SectionFormation from './components/SectionFormation'
+import { Link } from 'react-router-dom'
+
 
 const Dashboard = () => {  
 
@@ -94,22 +96,21 @@ const Dashboard = () => {
     }
 
     return (
-        <div id='dashboard'>
-            <div className='center-page'>
-                <div className='font-home-2'>
-                    Administrateur Vidéos
-                </div>
-                <div className='importContainer'>
-                    <input type='file' id="upload" onChange={handleChange} hidden/>
-                    <label className='selectBtn' htmlFor="upload">Contenu Vidéo</label>
-                    <button className='uploadBtn' onClick={handleUpload}>Importer</button>
-                </div>
-                <p id='fileName'></p>
-                <progress id='progBar' value={progress} max="100" />
-                <div className='SectionContainer'>
-                    <div>
-                        <div className='blog-page-grid'>
-                            {sections && sections.map(section => <SectionFormation handleDelForm={handleDelForm} editTitleForm={editTitleForm} type={section.type} title={section.title} key={section.id} id={section.id} url={section.url}/>)}
+        <div>
+            <div className='font-home'>Gestionnaire Contenu</div>
+                <div className='center-page'>
+                    <div className='SectionContainer'>
+                        <div>
+                            <div className='blog-page-grid'>
+                                <div className='importContainer'>
+                                    <input type='file' id="upload" onChange={handleChange} hidden/>
+                                    <label className='selectBtn' htmlFor="upload">Contenu Vidéo</label>
+                                    <button className='uploadBtn' onClick={handleUpload}>Importer</button>
+                                    <Link className='profileBtn' to='/dashboard/profiles'>Profiles</Link>
+                                </div>
+                                <p id='fileName'></p>
+                                <progress id='progBar' value={progress} max="100" />
+                            {sections && sections.map(section => <SectionFormation edit='true' handleDelForm={handleDelForm} editTitleForm={editTitleForm} type={section.type} title={section.title} key={section.id} id={section.id} url={section.url}/>)}
                         </div>
                     </div>
                 </div>
