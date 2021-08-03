@@ -2,12 +2,6 @@ import React, { useState, useEffect } from 'react'
 import { storage, firestore, db } from './firebase'
 import { useCollectionData } from 'react-firebase-hooks/firestore'
 import $ from 'jquery'
-import FormationProgress from './components/FormationProgess'
-import Question from './components/Question'
-import ProfileRow from './components/ProfileRow'
-import ProfileDetails from './components/ProfileDetails'
-import ProfileFormationRow from './components/ProfileFormationRow'
-import GestionFormationRow from './components/GestionFormationRow'
 import SectionFormation from './components/SectionFormation'
 import { Link } from 'react-router-dom'
 
@@ -59,8 +53,8 @@ const Dashboard = () => {
     }
 
     const handleDelForm = async(id) => {
-        let dbRef = db.collection('video').doc(id);
-        //await dbRef.delete()
+        /*let dbRef = db.collection('video').doc(id);
+        await dbRef.delete()*/
     }
 
     const handleUpload = () => {

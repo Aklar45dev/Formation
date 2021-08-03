@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react' 
-import {useParams} from 'react-router-dom' 
 
 const VideoToolBar = (props) => {
     useEffect(() => {
@@ -27,10 +26,6 @@ const VideoToolBar = (props) => {
         }
     }, [])
     
-    let { id } = useParams()
-    var titles = ['Inspection de véhicule', 'Conduite de véhicule',
-    'Signalisation', 'Sécurité', "Téléopération" ,'Maintenance de base']
-
     return (
         <div className='main-control-container' id='timeStampsContainer'>
             <div className='controls-bar'>

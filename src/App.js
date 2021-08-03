@@ -25,6 +25,7 @@ const App = () => {
   $(() => {  
     $('#menu').slideUp(0)
     $('#menu-full-page').fadeOut(0)
+    $('#adressMenu').fadeOut(0)
     $("#burgerIcon").css({'display':'block'})
     if(email === ''){
       $("#burgerIcon").css({'display':'none'})
@@ -46,6 +47,7 @@ const App = () => {
       $('#menu-full-page').css({'pointer-events':'all'})
       $('#menu-full-page').fadeIn(350)
       $('#burgerIcon').addClass("is-active")
+      $('#adressMenu').fadeIn(350)
       menuOpen = true
       return
     }
@@ -53,6 +55,7 @@ const App = () => {
     $('#menu-full-page').css({'pointer-events':'none'})
     $('#menu-full-page').fadeOut(350)
     $('#burgerIcon').removeClass("is-active")
+    $('#adressMenu').fadeOut(350)
     menuOpen = false
   }
 
@@ -67,7 +70,7 @@ const App = () => {
   return (
     <Router>
       <div id='burger-container'>
-        <div className='emailText'>{email}</div>
+        <div className='emailText' id='adressMenu'>{email}</div>
         <button id="burgerIcon" onClick={() => toggleMenu()} className="hamburger hamburger--spin" type="button">
           <span className="hamburger-box">
             <span className="hamburger-inner"></span>
@@ -96,7 +99,7 @@ const App = () => {
             </div>
             <div className='item-row' onClick={() => toggleMenu()}>
               <img alt="img" src='./images/play.png' />
-              <Link className="menu-text" to="/module">Formations</Link>
+              <Link className="menu-text" to="/module">Chapitres</Link>
             </div>
             <div className='item-row' onClick={() => toggleMenu()}>
               <img alt="img" src='./images/login.png' />
@@ -131,18 +134,4 @@ const App = () => {
   )
 }
 
-export default App;
-//{email === '' ? <Redirect to='/register'/> : <Redirect to='/'/>}
-
-/*<div className='item-row' onClick={() => toggleMenu()}>
-              <img alt="img" src='./images/about.png' />
-              <Link className="menu-text" to='/about'>À Propos</Link>
-            </div>
-{email === 'admin@gmail.com' ? <div className='item-row' onClick={() => toggleMenu()}>
-              <img alt="img" src='./images/manager.png' />
-              <Link className="menu-text" to="/gestionnaire">Gestionnaire Coiffure</Link>
-            </div> : <div/>}
-            <div className='item-row' onClick={() => toggleMenu()}>
-              <img alt="img" src='./images/blog.png' />
-              <Link className="menu-text" to="/presentation">Présentation Coiffure</Link>
-            </div>*/
+export default App

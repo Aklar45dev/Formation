@@ -16,6 +16,25 @@ time, mark, audio, video {
 	border: 0;
 }
 
+#Choix-container{
+  display: none;
+  position: absolute;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  z-index: 10;
+  height: 100%;
+  background-color: #0c0c0c;
+  flex-wrap: nowrap;
+  justify-content: center;
+}
+
+.question-title{
+  font-size: 3em;
+  color: rgb(255, 255, 255);
+  padding-bottom: 0.5em;
+}
+
 html{
   background-color: black;
   overflow-y: hidden; 
@@ -128,16 +147,17 @@ html{
 }
 
 .validateQuestionBtn{
-  background-color: #1f1f1f;
-  margin: 0.2em;
+  background-color: #222222;
+  margin: 0.3em;
   font-size: 1.5em;
-  color:rgb(112, 112, 112);
-  padding: 1em;
-  padding-left: 2em;
-  padding-right: 2em;
+  color:rgb(255, 255, 255);
+  padding: 1.5em;
   border-radius: 1em;
   border-width: 0em;
+  width: 40%;
   border-style: solid;
+  border-width: 5px;
+  border-color: rgb(39, 39, 39);
 }
 
 .contactBtn{
@@ -189,7 +209,7 @@ html{
   padding-left: 1em;
   padding-right: 1em;
   border-style: solid;
-  color: rgb(112, 112, 112);
+  color: rgb(139, 139, 139);
   width: auto;
   position: absolute;
   display: none;
@@ -253,7 +273,7 @@ html{
   margin-bottom: 0.5em;
   border-style: solid;
   color:rgb(151, 151, 151);
-  justify-content: start;
+  justify-content: flex-start;
   background-color: rgb(40, 40, 40);
   margin-bottom: 1em;
 }
@@ -268,7 +288,7 @@ html{
   margin-bottom: 0.5em;
   border-style: solid;
   color:rgb(151, 151, 151);
-  justify-content: start;
+  justify-content: flex-start;
 }
 
 .profileRowText{
@@ -290,6 +310,11 @@ html{
 
 .green-font{
   color: green !important;
+}
+
+.endText{
+  font-size: 2em;
+  color: #ececec;
 }
 
 .textArea{
@@ -402,7 +427,7 @@ progress::-webkit-progress-value {
 .sectionTitle{
   color:rgb(255, 255, 255);
   font-size: 2.5em;
-  margin-bottom: 0.2em;
+  margin-bottom: 0.5em;
   margin-right: 0.5em;
 }
 
@@ -928,6 +953,34 @@ a {
 }
 
 .uploadBtn:hover{
+  opacity: 0.7;
+}
+
+.imgBG{
+  position: absolute;
+  z-index: -10;
+  opacity: 0.55;
+  height: auto;
+  width: 100%;
+}
+
+.continueBtn{
+  background-color: rgba(0, 0, 0, 0);
+  color: rgb(255, 38, 0);
+  margin-top: 1.5em;
+  padding: 0.5em;
+  border-radius: 0.5em;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 1.3em;
+  border-color: rgb(255, 38, 0);
+}
+
+.continueBtn a {
+  color: rgb(255, 38, 0) !important;
+}
+
+.continueBtn:hover{
   opacity: 0.7;
 }
 

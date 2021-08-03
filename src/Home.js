@@ -16,7 +16,7 @@ const Home = () => {
 
     return (
         <div>
-            <div className='font-home'>CFPVD</div>
+            <div className='font-home'>Formation</div>
             <video id='homeVid' className="homeVideo" src='https://firebasestorage.googleapis.com/v0/b/cfpvd-8e8aa.appspot.com/o/videos%2Fmovie2.mp4?alt=media&token=f94b484b-6183-4a0d-bccb-0433325690a7' preload="auto" autoPlay='auto' muted loop/>
             <div className='home-container'>
                 <Link to='/module' className='startBtn'>Commencer</Link>

@@ -1,13 +1,11 @@
 import React, { useState } from 'react'
-import Question from './Question'
-import { firestore, db} from '../firebase'
+import { firestore } from '../firebase'
 import { useCollectionData } from 'react-firebase-hooks/firestore'
 
 const SectionFormation = (props) => {
 
     const [edit, setEdit] = useState(false)
     const [text, setText] = useState(props.title)
-    const [valid, setValid] = useState('false')
 
     //get questions
     const quizRef = firestore.collection('quiz')
@@ -63,24 +61,7 @@ const SectionFormation = (props) => {
         })
     }
 
-    const updateAnsId = async(id, ansId) => {
-        let dbRef = db.collection('quiz').doc(id);
-        await dbRef.update({
-            ansId: ansId
-        })
-    }
-
-    const editAns = async(id, field, text) => {
-        let dbRef = db.collection('quiz').doc(id);
-        await dbRef.update({
-        [field]: text
-        })
-    }
-
-    const handleDel = async(id) => {
-        let dbRef = db.collection('quiz').doc(id);
-        await dbRef.delete()
-    }
+    
 
     return (
         <div className='sectionWrapper'>
@@ -92,10 +73,27 @@ const SectionFormation = (props) => {
             {edit ? <input type='text' className='inputBox' value={text} onChange={handleChange} autoFocus/> : <div/>}
             {props.type === 'video/mp4' ? <video alt='img' src={props.url} autoPlay muted loop/> : <img alt='img' src={props.url}/>}
             <div className='sectionQuestion'>Questions:</div>
-            {filteredQuizes && filteredQuizes.map(quiz => <Question valid={valid} edit={props.edit} updateAnsId={updateAnsId} editAns={editAns} delSec={handleDel} key={quiz.title} data={quiz} admin='false' ansId={quiz.ansId} title={quiz.id}/>)}
             <button className='addBtn' onClick={() => NewQuestion(quizObject)}>Nouvelle Question</button>
         </div>
     )
 }
 
 export default SectionFormation
+/*const updateAnsId = async(id, ansId) => {
+    let dbRef = db.collection('quiz').doc(id);
+    await dbRef.update({
+        ansId: ansId
+    })
+}
+
+const editAns = async(id, field, text) => {
+    let dbRef = db.collection('quiz').doc(id);
+    await dbRef.update({
+    [field]: text
+    })
+}
+
+const handleDel = async(id) => {
+    let dbRef = db.collection('quiz').doc(id);
+    await dbRef.delete()
+}*/

@@ -1,11 +1,29 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import $ from 'jquery'
 import VideoToolBar from './VideoToolBar'
+import Button from './Button'
+import {Link} from 'react-router-dom' 
 
-const VideoPlayer = ({src, title}) => {
+const VideoPlayer = ({src, title, arbo1, arbo2}) => {
 
+    const [newVideoSrc, setNewVideoSrc] = useState()
+    const [arbo, setArbo] = useState()
+    const [imgSrc, setImgSrc] = useState()
+    const [textFinal, setTextFinal] = useState()
     let videoPlaying = true
 
+    
+    useEffect(() => {
+        if(newVideoSrc === '' || newVideoSrc === undefined){
+            setArbo(arbo1)
+            setNewVideoSrc(src)
+            mouseMove()
+            if (arbo1[0] !== undefined){
+                setImgSrc(arbo1[0].img)
+            }
+        }
+    })
+      
     const HandlePlay = () => {
         mouseMove()
         if(videoPlaying){
@@ -30,7 +48,18 @@ const VideoPlayer = ({src, title}) => {
     }
 
     const showTest = () => {
-        $('#testWindow').css({'display': 'grid'})
+        $('#Choix-container').css({'display': 'flex'})
+    }
+
+    const SetVideoResponseSRC = (newSrc, textFinal) => {
+        setNewVideoSrc(newSrc)
+        setArbo(arbo2)
+        setTextFinal(textFinal)
+        if(arbo2 !== undefined){
+            setImgSrc(arbo2[0].img)
+        }
+        $('#Choix-container').css({'display': 'none'})
+        $('#mainVideo').trigger('play')
     }
 
     let timer
@@ -52,13 +81,12 @@ const VideoPlayer = ({src, title}) => {
             $('#timeStampsContainer').slideUp(500)
             $('#playerControlsContainer').fadeOut(500)
             $('#mainVideo').css({'cursor': 'none'})
-        }, 3500)
-        
+        }, 1500)
     }
 
     return (
         <div className="video-container" onMouseMove={()=> mouseMove()}>
-            <video onEnded={() => showTest()} id="mainVideo" src={src} preload="auto"/>
+            <video onEnded={() => showTest()} id="mainVideo" src={newVideoSrc} preload="auto" autoPlay/>
             <div className='controls-container' id='playerControlsContainer'>
                 <button onClick={() => HandleJump(false)}>
                     <img src="/images/previous.png" width="90" height="90" alt="play" />
@@ -71,6 +99,12 @@ const VideoPlayer = ({src, title}) => {
                 </button>
             </div>
             <VideoToolBar title={title}/>
+            <div id='Choix-container'>
+                <h2 className='question-title'>{textFinal === undefined ? 'Que faire?' : ''}</h2>
+                <p className='endText'>{textFinal === undefined ? '' : textFinal}</p>
+                {textFinal === undefined ? <img alt='' className='imgBG' src={imgSrc} /> : <button className='continueBtn'><Link to={`/module`}>Continuer</Link></button>}
+                {textFinal !== undefined ? <div/> : arbo && arbo.map(arbo => <Button text={arbo.text} key={arbo.text} src={arbo.src} fct={SetVideoResponseSRC} textFinal={arbo.textFinal} />)}
+            </div>
         </div>
     )
 

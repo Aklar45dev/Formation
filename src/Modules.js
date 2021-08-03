@@ -24,7 +24,7 @@ const Modules = () => {
         
     return (
         <div id='modules-page'>
-            <div className='font-home'>Formations</div>
+            <div className='font-home'>Chapitres</div>
             <div className='modules-page-container'>
                 <div className='modules-page-grid'>
                     {videos && videos.map(video => <Thumbnail key={video.title} src={video.url} module='1' title={video.title} hideThumbnails={showThumbnails} />)}
