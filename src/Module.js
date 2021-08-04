@@ -2,7 +2,8 @@ import React, { useEffect } from 'react'
 import VideoPlayer from './components/VideoPlayer'
 import Thumbnail from './components/Thumbnail'
 import $ from 'jquery'
-import { firestore } from './firebase'
+import { firestore, db } from './firebase'
+import firebase from './firebase'
 import { useCollectionData } from 'react-firebase-hooks/firestore'
 import { useLocation } from 'react-router-dom'
 
@@ -35,6 +36,33 @@ const Module = () => {
     const queryQuiz = quizRef.orderBy('createdAt', "asc")
     const [quizes] = useCollectionData(queryQuiz, {idField: 'id'})
 
+    //get profiles
+    const profileRef = firestore.collection('profiles')
+    const queryProfile = profileRef.orderBy('createdAt', "asc")
+    const [profiles] = useCollectionData(queryProfile, {idField: 'id'})
+
+    const SetScore = (name, state) => {
+        if(profiles !== undefined){
+            firebase.auth().onAuthStateChanged(user => {
+                if (user) {
+                    profiles.forEach(profile => {
+                        if(profile.email === user.email)
+                        {
+                            PushScore(name, profile.id, state)
+                        }
+                    })
+                }
+            })
+        }
+    }
+
+    const PushScore = async(name, id, state) => {
+        let dbRef = db.collection('profiles').doc(id);
+        await dbRef.update({
+            [name]: state
+        })
+    }
+    
     if(videos !== undefined){
         videos.forEach(video => {
             if(pathId === video.title)
@@ -76,7 +104,7 @@ const Module = () => {
     return (
         <div>
             <div className="main-container">
-                <VideoPlayer title={pathId} src={mainUrl} arbo1={arbo1} arbo2={arbo2} id={'MainPlayer'} />
+                <VideoPlayer setScore={SetScore} title={pathId} src={mainUrl} arbo1={arbo1} arbo2={arbo2} id={'MainPlayer'} />
             </div>
             <div className="moduleBtn">
                 <button id='moduleBtn' onClick={() => showThumbnails()}>▼</button>
@@ -84,7 +112,6 @@ const Module = () => {
             <div className='thumbnail-container' id="thumbnails">
                 {videos && videos.map(video => <Thumbnail key={video.title} src={video.url} module='1' title={video.title} hideThumbnails={showThumbnails} />)}
             </div>
-            
         </div>
     )
 }

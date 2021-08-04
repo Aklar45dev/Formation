@@ -11,7 +11,7 @@ const ProfilAdmin = () => {
     
     //get profiles
     const profileRef = firestore.collection('profiles')
-    const queryProfile = profileRef.orderBy('createdAt', "desc")
+    const queryProfile = profileRef.orderBy('createdAt', "asc")
     const [profiles] = useCollectionData(queryProfile, {idField: 'id'})
 
     const videoRef = firestore.collection('video')

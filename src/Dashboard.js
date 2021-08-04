@@ -25,7 +25,7 @@ const Dashboard = () => {
 
     //get videos
     const sectionRef = firestore.collection('video')
-    const query = sectionRef.orderBy('createdAt', "desc")
+    const query = sectionRef.orderBy('createdAt', "asc")
     const [sections] = useCollectionData(query, {idField: 'id'})
 
     const handleChange = e => {

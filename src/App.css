@@ -112,6 +112,9 @@ html{
 .profile-element{
   margin-top: 2em;
   margin-bottom: 10em;
+  width: 60%;
+  padding-left: 20%;
+  padding-right: 20%;
 }
 
 .answerContainer{
@@ -342,7 +345,7 @@ html{
 .progressRowTitle{
   background-color: #1f1f1f;
   padding: 1em;
-  width: 17%;
+  width: auto;
   height: auto;
   border-color: rgb(173, 173, 173);
   margin: 0.2em;
@@ -389,7 +392,7 @@ html{
   font-size: 2em;
   align-self: center;
   margin: 0.5em;
-  width: 5.5%;
+  width: 32%;
   color:rgb(112, 112, 112);
 }
 

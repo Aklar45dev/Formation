@@ -4,14 +4,13 @@ import VideoToolBar from './VideoToolBar'
 import Button from './Button'
 import {Link} from 'react-router-dom' 
 
-const VideoPlayer = ({src, title, arbo1, arbo2}) => {
+const VideoPlayer = ({src, title, arbo1, arbo2, setScore}) => {
 
     const [newVideoSrc, setNewVideoSrc] = useState()
     const [arbo, setArbo] = useState()
     const [imgSrc, setImgSrc] = useState()
     const [textFinal, setTextFinal] = useState()
     let videoPlaying = true
-
     
     useEffect(() => {
         if(newVideoSrc === '' || newVideoSrc === undefined){
@@ -55,6 +54,12 @@ const VideoPlayer = ({src, title, arbo1, arbo2}) => {
         setNewVideoSrc(newSrc)
         setArbo(arbo2)
         setTextFinal(textFinal)
+        if(textFinal === 'Bonne réponse!'){
+            setScore(title, 'Réussit')
+        }
+        if(textFinal === 'Mauvaise réponse!'){
+            setScore(title, 'Échoué')
+        }
         if(arbo2 !== undefined){
             setImgSrc(arbo2[0].img)
         }

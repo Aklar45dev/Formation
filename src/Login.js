@@ -51,10 +51,12 @@ const Login = () => {
                 <button onClick={() => login()} className='logBtn'>Se connecter</button>
                 <button onClick={() => signin()} className='logBtn2'>S'inscrire</button>
             </div>
-            <div className='logLabel'>admin@gmail.com</div>
-            <div className='logLabel'>123123</div>
         </div>
     )
 }
 
 export default Login
+/*
+admin@gmail.com
+123123
+            */
