@@ -55,7 +55,7 @@ const VideoPlayer = ({src, title, arbo1, arbo2, setScore}) => {
         setArbo(arbo2)
         setTextFinal(textFinal)
         if(textFinal === 'Bonne réponse!'){
-            setScore(title, 'Réussit')
+            setScore(title, 'Réussi')
         }
         if(textFinal === 'Mauvaise réponse!'){
             setScore(title, 'Échoué')
