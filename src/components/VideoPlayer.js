@@ -51,6 +51,7 @@ const VideoPlayer = ({src, title, arbo1, arbo2, setScore}) => {
     }
 
     const SetVideoResponseSRC = (newSrc, textFinal) => {
+        showLoading()
         setNewVideoSrc(newSrc)
         setArbo(arbo2)
         setTextFinal(textFinal)
@@ -64,8 +65,10 @@ const VideoPlayer = ({src, title, arbo1, arbo2, setScore}) => {
             setImgSrc(arbo2[0].img)
         }
         $('#Choix-container').css({'display': 'none'})
-        $('#mainVideo').trigger('play')
     }
+
+    $('#playerControlsContainer').fadeOut(0)
+
 
     let timer
     let timerRunning = false
@@ -89,9 +92,22 @@ const VideoPlayer = ({src, title, arbo1, arbo2, setScore}) => {
         }, 1500)
     }
 
+    const showLoading = () =>{
+        $('#loadingIcon').css({'display': 'block'})
+    }
+
+    const hideLoading = () =>{
+        $('#loadingIcon').css({'display': 'none'})
+    }
+
     return (
         <div className="video-container" onMouseMove={()=> mouseMove()}>
-            <video onEnded={() => showTest()} id="mainVideo" src={newVideoSrc} preload="auto" autoPlay/>
+            <video onPlaying={() => hideLoading()} onEnded={() => showTest()} id="mainVideo" src={newVideoSrc} preload="auto" autoPlay='autoplay'/>
+            <div className="loadingio-spinner-spinner-ofgnqrv5v2" id='loadingIcon'>
+                <div className="ldio-q5csxh2c9l">
+                    <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+                </div>
+            </div>
             <div className='controls-container' id='playerControlsContainer'>
                 <button onClick={() => HandleJump(false)}>
                     <img src="/images/previous.png" width="90" height="90" alt="play" />
@@ -110,6 +126,7 @@ const VideoPlayer = ({src, title, arbo1, arbo2, setScore}) => {
                 {textFinal === undefined ? <img alt='' className='imgBG' src={imgSrc} /> : <button className='continueBtn'><Link to={`/module`}>Continuer</Link></button>}
                 {textFinal !== undefined ? <div/> : arbo && arbo.map(arbo => <Button text={arbo.text} key={arbo.text} src={arbo.src} fct={SetVideoResponseSRC} textFinal={arbo.textFinal} />)}
             </div>
+            
         </div>
     )
 

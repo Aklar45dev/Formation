@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import './App.css'
+import './spinner.css'
 import './burger.css'
 import './main.js'
 import Home from './Home'

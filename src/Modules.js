@@ -21,7 +21,21 @@ const Modules = () => {
     const videoRef = firestore.collection('video')
     const query = videoRef.orderBy('createdAt', "asc")
     const [videos] = useCollectionData(query, {idField: 'id'})
-        
+
+    const GetProfiles = async() => {
+    //get profiles
+    const profileRef = firestore.collection('profiles')
+    const queryProfile = profileRef.orderBy('createdAt', "asc")
+    const [profiles] = useCollectionData(queryProfile, {idField: 'id'})
+
+    let data = profiles
+
+    return data;
+    }
+
+
+    console.log(GetProfiles())
+
     return (
         <div id='modules-page'>
             <div className='font-home'>Chapitres</div>

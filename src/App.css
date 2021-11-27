@@ -16,6 +16,15 @@ time, mark, audio, video {
 	border: 0;
 }
 
+.iconThumbnail{
+  width: 2em;
+  height: 2em;
+  background-color: red;
+  position: absolute;
+  border-radius: 100%;
+  z-index: 3;
+}
+
 #Choix-container{
   display: none;
   position: absolute;
@@ -33,6 +42,14 @@ time, mark, audio, video {
   font-size: 3em;
   color: rgb(255, 255, 255);
   padding-bottom: 0.5em;
+}
+
+.Échoué{
+  color: red !important;
+}
+
+.Réussi{
+  color: green !important;
 }
 
 html{
@@ -111,7 +128,7 @@ html{
 
 .profile-element{
   margin-top: 2em;
-  margin-bottom: 10em;
+  margin-bottom: 5em;
   width: 60%;
   padding-left: 20%;
   padding-right: 20%;
@@ -152,7 +169,7 @@ html{
 .validateQuestionBtn{
   background-color: #222222;
   margin: 0.3em;
-  font-size: 1.5em;
+  font-size: 1.0em;
   color:rgb(255, 255, 255);
   padding: 1.5em;
   border-radius: 1em;
@@ -223,7 +240,8 @@ html{
 }
 
 .validateQuestionBtn:hover{
-  opacity: 0.7;
+  filter: brightness(1.5);
+  cursor: pointer;
 }
 
 .validateQuestionBtn:active{
@@ -334,8 +352,8 @@ html{
   height: auto;
   border-color: rgba(173, 173, 173, 0);
   border-width: 0.1em;
-  margin: 0.25em;
-  margin-bottom: 0.5em;
+  margin: 0.125em;
+  margin-bottom: 0.25em;
   font-size: 1.5em;
   align-self: right;
   padding-left: 1em;
@@ -500,17 +518,18 @@ a {
   padding-right: 10em;
   padding-top: 2em;
   padding-bottom: 2em;
-  background-image: radial-gradient(rgba(0, 0, 0, 0.61) 0%, rgba(0, 0, 0, 0.415) 40%, transparent 60%);
+  background-image: radial-gradient(rgba(0, 0, 0, 0.31) 0%, rgba(0, 0, 0, 0.115) 40%, transparent 60%);
 }
 
 .controls-container button:hover{
-  opacity: 0.6;
+  filter: brightness(1.2);
   transform: scale(1.1);
   transition: all 0.3s;
 }
 
 .controls-container button{
   opacity: 1.0;
+  filter: brightness(0.9);
   transition: all 0.3s;
 }
 
@@ -519,11 +538,11 @@ a {
   transition: all 0.0s;
 }
 
-
 .video-container {
   display: flex;
   justify-content: center;
   width: 100%;
+  align-items: center
 }
 
 .main-control-container{
@@ -533,6 +552,7 @@ a {
   width: 100%;
   background-image:linear-gradient(rgba(0, 0, 0, 0), rgb(0, 0, 0));
 }
+
 .controls-bar {
   align-items: center;
   display: flex;
@@ -656,7 +676,7 @@ a {
 
 .homeVideo{
   width: 100%;
-  filter: brightness(0.7);
+  filter: brightness(0.6);
 }
 
 .test-validate-btn{
@@ -965,6 +985,7 @@ a {
   opacity: 0.55;
   height: auto;
   width: 100%;
+  top: 0;
 }
 
 .continueBtn{
@@ -1138,7 +1159,7 @@ label{
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 5px 10px 10px #000;
+  box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.39);
 }
 
 .thumbnail .imgThumb{
@@ -1150,8 +1171,8 @@ label{
 }
 
 .thumbnail .imgThumb:hover{
-  transform: scale(1.2);
-  filter: brightness(0.2);
+  transform: scale(1.1);
+  filter: brightness(1);
   transition: all 0.3s;
 }
 
@@ -1212,7 +1233,7 @@ label{
 }
 
 #menu-full-page{
-  z-index: 8;
+  z-index: 800;
   width: 100%;
   height: 100%;
   display: flex;
@@ -1227,7 +1248,7 @@ label{
   width: auto;
   background-color: rgb(8, 8, 8);
   display: block;
-  z-index: 9;
+  z-index: 900;
   right: 0;
   box-shadow: -3px 3px 40px #000;
   pointer-events: none;
@@ -1285,14 +1306,14 @@ label{
   display: flex;
   width: auto;
   position: absolute;
-  z-index: 10;
+  z-index: 1000;
   right: 0;
 }
 
 .modules-page-container{
   display: flex;
   justify-content: center;
-  margin-bottom: 6em;
+  margin-bottom: 1em;
 }
 
 .modules-page-grid{
@@ -1314,7 +1335,7 @@ label{
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 5px 10px 10px #000;
+  box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.377);
 }
 
 .home-container{
@@ -1340,16 +1361,18 @@ label{
   position: absolute;
   font-size: 2em;
   cursor: pointer;
-  opacity: 1;
+  filter: brightness(0.8);
   font-weight: 600;
   text-transform: uppercase;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
   text-shadow: 2px 2px 5px rgba(0, 0, 0, 1);
   z-index: 0;
+  transition: 0.2s;
 }
 
 .startBtn:hover{
- opacity: 0.7;
+  filter: brightness(1);
+ transition: 0.2s;
 }
 
 .startBtn:active{
@@ -1475,3 +1498,277 @@ label{
    color: rgb(255, 255, 255);
    font-size: 1.5em;
  }
+
+ @media only screen and (max-width: 600px) {
+ 
+  .center-page{
+    display: flex;
+    width: 100%;
+    padding-left: 0%;
+    padding-right: 0%;
+    justify-content: center;
+    background-color: rgb(24, 24, 24);
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .sectionWrapper{
+    background-color: #242424 !important;
+    padding: 1em;
+    height: auto;
+    margin: 0.2em;
+    align-self: center;
+    padding-left: 1em;
+    padding-right: 1em;
+    border-style: solid;
+    border-radius: 1em;
+    color:rgb(112, 112, 112);
+    width: auto;
+    margin-left: 0%;
+    margin-right: 0%;
+    margin-top: 2.5em;
+    margin-bottom: 2.5rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .importContainer{
+    margin-left: 5%;
+    margin-top: 3em;
+    align-content: stretch;
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center
+  }
+
+  .font-home{
+    font-size: 1.5em;
+    color:rgb(255, 255, 255);
+    text-transform: uppercase;
+    padding: 0.9em;
+    padding-left: 0.5em;
+    font-weight: 700;
+  }
+
+  .progressRow{
+    display: flex;
+    width: 100%;
+    margin-right: 0%;
+    margin-left: 0%;
+    margin-bottom: 1em;
+    justify-content: center;
+    background-color: rgb(40, 40, 40);
+    border-radius: 1em;
+  }
+
+  .profile-element{
+    margin-top: 2em;
+    margin-bottom: 5em;
+    width: 100%;
+    padding-left: 0%;
+    padding-right: 0%;
+  }
+
+  .profileVerti{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    border-color: rgb(173, 173, 173);
+    border-width: 0rem;
+    border-radius: 1em;
+    margin-left: 0%;
+    margin-right: 0%;
+    margin-bottom: 0.5em;
+    border-style: solid;
+    color:rgb(151, 151, 151);
+    justify-content: flex-start;
+    background-color: rgb(40, 40, 40);
+    margin-bottom: 1em;
+  }
+
+  .progressRowTitle{
+    background-color: #3f3f3f;
+    padding: 0.5em;
+    width: 22%;
+    height: auto;
+    border-color: rgb(173, 173, 173);
+    margin-left: 0.7em;
+    font-size: 1em;
+    align-self: center;
+    padding-left: 1em;
+    padding-right: 1em;
+    border-style: solid;
+    color:rgb(112, 112, 112);
+    border-radius: 1em;
+  }
+
+  .progressPercent{
+    font-size: 1em;
+    align-self: center;
+    margin: 0.5em;
+    color:rgb(112, 112, 112);
+  }
+
+  .progressRowBtn{
+    text-align: center;
+    background-color: #1f1f1f;
+    margin: 0.5em;
+    font-size: 1.0em;
+    height: auto;
+    color:rgb(112, 112, 112);
+    padding: 0.5em;
+    padding-left: 0.0em;
+    padding-right: 0.0em;
+    border-radius: 1em;
+  }
+
+  .startBtn{
+    border: 4.5px solid rgb(255, 70, 0);
+    color: rgba(255, 70, 0, 1);
+    background-color:rgba(0, 119, 255, 0);
+    margin: 0em;
+    padding: 0.5em;
+    padding-left: 0.8em;
+    padding-right: 0.8em;
+    border-radius: 0.3em;
+    opacity: 1;
+    position: absolute;
+    font-size: 1.5em;
+    cursor: pointer;
+    opacity: 1;
+    font-weight: 600;
+    text-transform: uppercase;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 1);
+    z-index: 0;
+  }
+
+  .modules-page-grid{
+    display: grid;
+    grid-template-columns: auto;
+    width: 100%;
+    height: auto;
+    justify-items: center;
+  }
+
+  .modules-page-grid .thumbnail{
+    background-color: rgba(0, 0, 0, 0);
+    margin: 0em;
+    margin-right: 0;
+    margin-bottom: 0;
+    height: 90%;
+    border-radius: 2rem;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.322);
+  }
+
+  .thumbnail .imgThumb{
+    width: 120%; 
+    height: 100%;
+    object-fit: cover;
+    transition: all 0.3s;
+    filter: brightness(0.5);
+  }
+
+  .validateQuestionBtn{
+    background-color: #222222;
+    margin: 0.3em;
+    font-size: 1.2em;
+    color:rgb(255, 255, 255);
+    padding: 1.5em;
+    border-radius: 1em;
+    border-width: 0em;
+    width: 100%;
+    border-style: solid;
+    border-width: 5px;
+    border-color: rgb(39, 39, 39);
+  }
+
+  .imgBG{
+    position: absolute;
+    z-index: -10;
+    opacity: 0.55;
+    height: auto;
+    width: 100%;
+  }
+
+  .controls-container {
+    position: absolute;
+    align-self: center;
+    display: inline-flex;
+    padding-left: 0em;
+    padding-right: 0em;
+    padding-top: 2em;
+    padding-bottom: 2em;
+    background-image: radial-gradient(rgba(0, 0, 0, 0.61) 0%, rgba(0, 0, 0, 0.415) 40%, transparent 60%);
+    transform: scale(0.6);
+  }
+
+  .video-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .controls-bar {
+    align-items: center;
+    display: flex;
+    padding-right: 0em;
+    padding-left: 0em;
+  }
+
+  .main-control-container{
+    position: absolute;
+    display: block;
+    align-self:flex-end;
+    width: 100%;
+    background-image:linear-gradient(rgba(0, 0, 0, 0), rgb(0, 0, 0));
+    transform: translateY(1.7em);
+  }
+
+  .timeStampText{
+    color:#ffffff;
+    font-size: 1.0em;
+    margin-left: 0.0em;
+    margin-right: 0.0em;
+    text-shadow: 0px 0px 4px #000000;
+  }
+
+  .nomModuleText{
+    font-size: 1.0em;
+    color: white;
+    font-weight: 700;
+  }
+
+  #mainVideo{
+    width: 100%;
+  }
+
+  .main-control-container{
+    position: absolute;
+    display: block;
+    align-self:flex-end;
+    width: 100%;
+    background-image:linear-gradient(rgba(0, 0, 0, 0), rgb(0, 0, 0));
+  }
+
+  #Choix-container{
+    display: none;
+    position: absolute;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    z-index: 10;
+    height: 100%;
+    background-color: #0c0c0c;
+    flex-wrap: nowrap;
+    justify-content: center;
+    top: 0;
+  }
+
+}

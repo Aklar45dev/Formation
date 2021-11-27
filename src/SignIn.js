@@ -79,7 +79,7 @@ const SignIn = () => {
             </div>
             <div>
                 <p className='logLabel'>Mot de passe:</p>
-                <input className='inputBoxLog' type='text' value={password} onChange={handleChangePassword}/>
+                <input className='inputBoxLog' type='password' value={password} onChange={handleChangePassword}/>
             </div>
             <div className='logBtnContainer'>
                 <button onClick={() => signUp()} className='logBtn'>S'inscrire</button>

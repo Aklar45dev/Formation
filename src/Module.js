@@ -4,8 +4,9 @@ import Thumbnail from './components/Thumbnail'
 import $ from 'jquery'
 import { firestore, db } from './firebase'
 import firebase from './firebase'
-import { useCollectionData } from 'react-firebase-hooks/firestore'
 import { useLocation } from 'react-router-dom'
+import { useCollectionData } from 'react-firebase-hooks/firestore'
+
 
 const Module = () => {
 
@@ -54,6 +55,7 @@ const Module = () => {
                 }
             })
         }
+
     }
 
     const PushScore = async(name, id, state) => {
