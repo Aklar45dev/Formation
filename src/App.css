@@ -141,9 +141,8 @@ html{
 .profile-element{
   margin-top: 2em;
   margin-bottom: 5em;
-  width: 60%;
-  padding-left: 20%;
-  padding-right: 20%;
+  padding-left: 5vh;
+  padding-right: 5vh;
 }
 
 .answerContainer{
@@ -267,11 +266,10 @@ html{
 
 .progressRow{
   display: flex;
-  width: 80%;
-  margin-right: 10%;
-  margin-left: 10%;
+  margin-right: 20%;
+  margin-left: 20%;
   margin-bottom: 0.5em;
-  justify-content: center;
+  justify-content: flex-start;
   background-color: rgb(40, 40, 40);
   border-radius: 1em;
 }
@@ -296,13 +294,12 @@ html{
 .profileVerti{
   display: flex;
   flex-direction: column;
-  width: 80%;
   justify-content: center;
   border-color: rgb(173, 173, 173);
   border-width: 0rem;
   border-radius: 1em;
-  margin-left: 10%;
-  margin-right: 10%;
+  margin-left: 20%;
+  margin-right: 20%;
   margin-bottom: 0.5em;
   border-style: solid;
   color:rgb(151, 151, 151);
@@ -381,16 +378,17 @@ html{
 }
 
 .progressRowTitle{
-  background-color: #1f1f1f;
+  background-color: #1f1f1f00;
   padding: 1em;
   width: auto;
   height: auto;
   border-color: rgb(173, 173, 173);
-  margin: 0.2em;
+  margin: 0.25em;
+  margin-left: 0.5em;
   font-size: 1.5em;
   align-self: center;
-  padding-left: 2em;
-  padding-right: 2em;
+  padding-left: 1em;
+  padding-right: 1em;
   border-style: solid;
   color:rgb(112, 112, 112);
   border-radius: 1em;
@@ -399,12 +397,13 @@ html{
 .progressRowBtn{
   background-color: #1f1f1f;
   margin: 0.5em;
+  margin-left: 0.25em;
   font-size: 1.5em;
   height: auto;
   color:rgb(112, 112, 112);
   padding: 1em;
-  padding-left: 2em;
-  padding-right: 2em;
+  padding-left: 1em;
+  padding-right: 1em;
   border-radius: 1em;
   border-width: 0em;
 }
@@ -427,10 +426,10 @@ html{
 }
 
 .progressPercent{
-  font-size: 2em;
+  font-size: 1.5em;
   align-self: center;
   margin: 0.5em;
-  width: 32%;
+  width: auto;
   color:rgb(112, 112, 112);
 }
 
@@ -1262,13 +1261,13 @@ label{
   width: 100%;
   height: 100%;
   display: flex;
-  position: absolute;
+  position: fixed;
   pointer-events: none;
   background-color:rgba(0, 0, 0, 0.7);
 }
 
 .menu-container{
-  position: absolute;
+  position: fixed;
   height: 100%;
   width: auto;
   background-color: rgb(8, 8, 8);
@@ -1330,7 +1329,7 @@ label{
 #burger-container{
   display: flex;
   width: auto;
-  position: absolute;
+  position: fixed;
   z-index: 1000;
   right: 0;
 }
@@ -1582,7 +1581,7 @@ label{
     margin-right: 0%;
     margin-left: 0%;
     margin-bottom: 0.5em;
-    justify-content: center;
+    justify-content: flex-start;
     background-color: rgb(40, 40, 40);
     border-radius: 1em;
   }
@@ -1606,6 +1605,8 @@ label{
     margin-left: 0%;
     margin-right: 0%;
     margin-bottom: 0.5em;
+    padding-bottom: 0.5em;
+    padding-top: 0.25em;
     border-style: solid;
     color:rgb(151, 151, 151);
     justify-content: flex-start;
@@ -1613,9 +1614,9 @@ label{
   }
 
   .progressRowTitle{
-    background-color: #3f3f3f;
+    background-color: #3f3f3f00;
     padding: 0.5em;
-    width: 22%;
+    width: auto;
     height: auto;
     border-color: rgb(173, 173, 173);
     margin-left: 0.7em;
@@ -1643,8 +1644,8 @@ label{
     height: auto;
     color:rgb(112, 112, 112);
     padding: 0.5em;
-    padding-left: 0.0em;
-    padding-right: 0.0em;
+    padding-left: 1.0em;
+    padding-right: 1.0em;
     border-radius: 1em;
   }
 
@@ -1827,5 +1828,20 @@ label{
     z-index: 3;
     box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.35);
   }
+
+  
+.profileVertiText{
+  background-color: #ffffff00;
+  padding: 0.0em;
+  height: auto;
+  border-color: rgba(173, 173, 173, 0);
+  border-width: 0.1em;
+  margin: 0.125em;
+  margin-bottom: 0.25em;
+  font-size: 1.0em;
+  align-self: right;
+  padding-left: 1em;
+  padding-right: 1em;
+}
 
 }

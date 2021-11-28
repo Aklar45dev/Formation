@@ -16,8 +16,8 @@ const FormationProgress = (props) => {
     return (
         <div className='progressRow'>
             <div className='progressRowTitle'>Chapitre {props.title}</div>
-            <Link to={path} className='progressRowBtn'>Accéder à la formation</Link>
-            <div className={`progressPercent ${classFont}`}>{props.statue[props.title-1] === '' ? 'Pas commencé' : props.statue[props.title-1]}</div> 
+            <Link to={path} className='progressRowBtn'>Accéder</Link>
+            <div className={`progressPercent ${classFont}`}>{props.statue[props.title-1] === '' ? 'Pas fait' : props.statue[props.title-1]}</div> 
         </div>
     )
 } 
