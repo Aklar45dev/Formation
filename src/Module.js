@@ -44,6 +44,7 @@ const Module = () => {
     let videoId = ''
     let arbo1 = ''
     let arbo2 = ''
+    let textNote = ''
 
     //get questions
     const quizRef = firestore.collection('quiz')
@@ -88,6 +89,7 @@ const Module = () => {
                 videoId = video.id
                 arbo1 = video.arbo1
                 arbo2 = video.arbo2
+                textNote = video.textNote
             } 
         })
         if(quizes !== undefined)
@@ -121,7 +123,7 @@ const Module = () => {
     return (
         <div>
             <div className="main-container">
-                <VideoPlayer setScore={SetScore} title={pathId} src={mainUrl} arbo1={arbo1} arbo2={arbo2} id={'MainPlayer'} />
+                <VideoPlayer setScore={SetScore} title={pathId} src={mainUrl} arbo1={arbo1} arbo2={arbo2} id={'MainPlayer'} textNote={textNote}/>
             </div>
             <div className="moduleBtn">
                 <button id='moduleBtn' onClick={() => showThumbnails()}>▼</button>

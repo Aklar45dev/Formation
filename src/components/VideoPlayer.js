@@ -4,24 +4,27 @@ import VideoToolBar from './VideoToolBar'
 import Button from './Button'
 import {Link} from 'react-router-dom' 
 
-const VideoPlayer = ({src, title, arbo1, arbo2, setScore}) => {
+const VideoPlayer = ({src, title, arbo1, arbo2, setScore, textNote}) => {
 
     const [newVideoSrc, setNewVideoSrc] = useState()
     const [arbo, setArbo] = useState()
     const [imgSrc, setImgSrc] = useState()
     const [textFinal, setTextFinal] = useState()
     let videoPlaying = true
+    let videoEnded = false
     
     useEffect(() => {
         if(newVideoSrc === '' || newVideoSrc === undefined){
             setArbo(arbo1)
             setNewVideoSrc(src)
             mouseMove()
+            $('#playerControlsContainer').fadeOut(0)
+
             if (arbo1[0] !== undefined){
                 setImgSrc(arbo1[0].img)
             }
         }
-    })
+    }, [arbo1])
       
     const HandlePlay = () => {
         mouseMove()
@@ -47,7 +50,9 @@ const VideoPlayer = ({src, title, arbo1, arbo2, setScore}) => {
     }
 
     const showTest = () => {
+        videoEnded = true
         $('#Choix-container').css({'display': 'flex'})
+        $('#freeze').fadeOut(0).fadeIn(1000)
     }
 
     const SetVideoResponseSRC = (newSrc, textFinal) => {
@@ -71,22 +76,24 @@ const VideoPlayer = ({src, title, arbo1, arbo2, setScore}) => {
     let timerRunning = false
     
     const mouseMove = () => {
-        if(timerRunning)
-        {
-            $('#timeStampsContainer').slideDown(500)
-            $('#playerControlsContainer').fadeIn(500)
-            $('#mainVideo').css({'cursor': 'default'})
-        }
-
-        timerRunning = true
-        clearInterval(timer)
-        timer = setInterval(() => {
-            timerRunning = false
+        if(!videoEnded){
+            if(timerRunning)
+            {
+                $('#timeStampsContainer').slideDown(500)
+                $('#playerControlsContainer').fadeIn(500)
+                $('#mainVideo').css({'cursor': 'default'})
+            }
+    
+            timerRunning = true
             clearInterval(timer)
-            $('#timeStampsContainer').slideUp(500)
-            $('#playerControlsContainer').fadeOut(500)
-            $('#mainVideo').css({'cursor': 'none'})
-        }, 1500)
+            timer = setInterval(() => {
+                timerRunning = false
+                clearInterval(timer)
+                $('#timeStampsContainer').slideUp(500)
+                $('#playerControlsContainer').fadeOut(500)
+                $('#mainVideo').css({'cursor': 'none'})
+            }, 1500)
+        }
     }
 
     const showLoading = () =>{
@@ -95,6 +102,14 @@ const VideoPlayer = ({src, title, arbo1, arbo2, setScore}) => {
 
     const hideLoading = () =>{
         $('#loadingIcon').css({'display': 'none'})
+        videoEnded = false
+
+    }
+
+    const reloadModule = () => {
+        if(textFinal === "Mauvaise réponse!"){
+            window.location.reload()
+        }
     }
 
     return (
@@ -106,13 +121,13 @@ const VideoPlayer = ({src, title, arbo1, arbo2, setScore}) => {
                 </div>
             </div>
             <div className='controls-container' id='playerControlsContainer'>
-                <button onClick={() => HandleJump(false)}>
+                <button onClick={() => HandleJump(false)} className="noselect">
                     <img src="/images/previous.png" width="90" height="90" alt="play" />
                 </button>
-                <button onClick={HandlePlay} id="playButton">
+                <button onClick={HandlePlay} className="noselect" id="playButton">
                     <img id="playButtonImage" src="/images/pause.png" width="135" height="135" alt="play" />
                 </button>
-                <button onClick={() => HandleJump(true)}>
+                <button onClick={() => HandleJump(true)} className="noselect">
                     <img src="/images/next.png" width="90" height="90" alt="play" />
                 </button>
             </div>
@@ -120,10 +135,10 @@ const VideoPlayer = ({src, title, arbo1, arbo2, setScore}) => {
             <div id='Choix-container'>
                 <h2 className='question-title'>{textFinal === undefined ? 'Que faire?' : ''}</h2>
                 <p className='endText'>{textFinal === undefined ? '' : textFinal}</p>
-                {textFinal === undefined ? <img alt='' className='imgBG' src={imgSrc} /> : <button className='continueBtn'><Link to={`/module`}>Continuer</Link></button>}
+                <p className='endTextNote'>{textFinal === undefined ? '' : textNote}</p>
+                {textFinal === undefined ? <img alt='' className='imgBG' id='freeze' src={imgSrc} /> : <button className='continueBtn' onClick={() => reloadModule()}><Link to={textFinal === "Mauvaise réponse!" ? `/module/${title}` : '/module'}>{textFinal === "Mauvaise réponse!" ? "Réessayer" : "Continuer"}</Link></button>}
                 {textFinal !== undefined ? <div/> : arbo && arbo.map(arbo => <Button text={arbo.text} key={arbo.text} src={arbo.src} fct={SetVideoResponseSRC} textFinal={arbo.textFinal} />)}
             </div>
-            
         </div>
     )
 

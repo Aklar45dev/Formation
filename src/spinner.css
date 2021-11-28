@@ -64,10 +64,10 @@
 .loadingio-spinner-spinner-ofgnqrv5v2 {
   width: 200px;
   height: 200px;
-  display: inline-block;
-  overflow: hidden;
+  display: block;
   background: #00000000;
   position: absolute;
+  transform: scale(0.5);
 }
 .ldio-q5csxh2c9l {
   width: 100%;
