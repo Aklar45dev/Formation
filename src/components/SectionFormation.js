@@ -1,11 +1,8 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { firestore } from '../firebase'
 import { useCollectionData } from 'react-firebase-hooks/firestore'
 
 const SectionFormation = (props) => {
-
-    const [edit, setEdit] = useState(false)
-    const [text, setText] = useState(props.title)
 
     //get questions
     const quizRef = firestore.collection('quiz')
@@ -22,28 +19,11 @@ const SectionFormation = (props) => {
         }
     }
 
-    const editTitleForm = () => {
-        if(edit){
-            props.editTitleForm(props.id, text)
-            setEdit(false)
-        }
-        if(!edit){
-            setEdit(true)
-        } 
-    }
-
-    const handleChange = e => {
-        setText(e.target.value)
-    }
-    
-
     return (
         <div className='sectionWrapper'>
             <div className='title-container'>
-                <p className='sectionTitle'>{props.title}</p>
-                <button onClick={() => editTitleForm()} title='Modifier' className='editBtn'><img alt='img' className="icon" src='./images/edit.png' /></button>
+                <p className='sectionTitle'>Chapitre {props.title}</p>
             </div>
-            {edit ? <input type='text' className='inputBox' value={text} onChange={handleChange} autoFocus/> : <div/>}
             {props.type === 'video/mp4' ? <video alt='img' src={props.url} autoPlay muted loop/> : <img alt='img' src={props.url}/>}
             
         </div>
@@ -51,46 +31,3 @@ const SectionFormation = (props) => {
 }
 
 export default SectionFormation
-/*const quizObject = {
-        a1: 'Choix 1',
-        a2: 'Choix 2',
-        a3: 'Choix 3', 
-        a4: 'Choix 4',
-        title: 'Question',
-        ansId: '0',
-        ownerId: '' 
-    }
-const NewQuestion = async(data) => {
-        await postRef.add({
-            createdAt: Date.now(),
-            1: data.a1,
-            2: data.a2,
-            3: data.a3,
-            4: data.a4,
-            title: data.title,
-            ansId: data.ansId,
-            ownerId: props.id
-        })
-    }
-
-<div className='sectionQuestion'>Questions:</div>
-            <button className='addBtn' onClick={() => NewQuestion(quizObject)}>Nouvelle Question</button>
-
-const updateAnsId = async(id, ansId) => {
-    let dbRef = db.collection('quiz').doc(id);
-    await dbRef.update({
-        ansId: ansId
-    })
-}
-
-const editAns = async(id, field, text) => {
-    let dbRef = db.collection('quiz').doc(id);
-    await dbRef.update({
-    [field]: text
-    })
-}
-
-const handleDel = async(id) => {
-    let dbRef = db.collection('quiz').doc(id);
-    await dbRef.delete()
-}*/

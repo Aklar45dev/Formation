@@ -2,15 +2,16 @@ import React from 'react'
 import $ from 'jquery'
 import {Link} from 'react-router-dom' 
 
-
 const Home = () => {
 
     $(() => {
-        /*let video = document.getElementById('homeVid')
+        let video = document.getElementById('homeVid')
         if(video !== null){
-            video.currentTime = 0
-        }*/
+            video.currentTime = 8
+        }
     })
+    
+    
 
     $('html').css({'background-color':'black'})
 

@@ -21,7 +21,7 @@ const ProfilAdmin = () => {
     return (
         <div>
             <div className='font-home'>Gestionnaire Profiles</div>
-            {profiles && profiles.map(pro => <ProfileDetails key={pro.lastname} videos={videos} profile={pro} name={pro.lastname} lastname={pro.name} email={pro.email} formation={pro.formation}/>)}
+            {profiles && profiles.map(profile => <ProfileDetails key={profile.lastname} videos={videos} profile={profile} name={profile.lastname} lastname={profile.name} email={profile.email} formation={profile.formation}/>)}
         </div>
     )
 }

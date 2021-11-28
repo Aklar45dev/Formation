@@ -11,7 +11,7 @@ const ProfileDetails = (props) => {
                 <div className='profileVertiText'>Email: {props.email}</div>
             </div>
             <div className='dash-container'>
-                {props.videos && props.videos.map(video => <FormationProgress key={video.title} value={props.profile[video.title] === undefined ? 0 : props.profile[video.title]} title={video.title}/>)}
+                {props.videos && props.videos.map(video => <FormationProgress key={video.title} statue={props.profile.chapitres} title={video.title}/>)}
             </div>
         </div>
     ) 

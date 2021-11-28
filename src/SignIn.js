@@ -25,6 +25,7 @@ const SignIn = () => {
     const sendProfil = async() => {
         await profileRef.add({
             createdAt: Date.now(),
+            chapitres: ["","",""],
             name: name,
             lastname: lastname,
             email: email,

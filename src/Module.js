@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import VideoPlayer from './components/VideoPlayer'
 import Thumbnail from './components/Thumbnail'
 import $ from 'jquery'
@@ -14,12 +14,25 @@ const Module = () => {
     let filteredQuizes = []
     let validatedQuizeStates = []
 
+    const [profile, setProfile] = useState({})
+
     $('html').css({'background-color':'rgb(0, 0, 0)'})
     $('html').css({'overflow-y':'scroll'})
 
     useEffect(() => {
         $('#thumbnails').slideUp(0)
+        firebase.auth().onAuthStateChanged(user => {
+            db.collection("profiles").get().then((querySnapshot) => {
+                querySnapshot.forEach((doc) => {
+                  if(user.email === doc.data().email){
+                    setProfile(doc.data())
+                  }
+                });
+            });
+          })
+        
       }, [])
+
 
     //get videos
     const videoRef = firestore.collection('video')
@@ -55,16 +68,18 @@ const Module = () => {
                 }
             })
         }
-
     }
+
 
     const PushScore = async(name, id, state) => {
-        let dbRef = db.collection('profiles').doc(id);
-        await dbRef.update({
-            [name]: state
+        let dbRef2 = db.collection('profiles').doc(id);
+        let chapitres = profile.chapitres
+        chapitres[name-1] = state
+        dbRef2.update({
+            'chapitres':chapitres
         })
     }
-    
+
     if(videos !== undefined){
         videos.forEach(video => {
             if(pathId === video.title)

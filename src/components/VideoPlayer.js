@@ -67,9 +67,6 @@ const VideoPlayer = ({src, title, arbo1, arbo2, setScore}) => {
         $('#Choix-container').css({'display': 'none'})
     }
 
-    $('#playerControlsContainer').fadeOut(0)
-
-
     let timer
     let timerRunning = false
     
@@ -119,7 +116,7 @@ const VideoPlayer = ({src, title, arbo1, arbo2, setScore}) => {
                     <img src="/images/next.png" width="90" height="90" alt="play" />
                 </button>
             </div>
-            <VideoToolBar title={title}/>
+            <VideoToolBar title={`Chapitre ${title}`}/>
             <div id='Choix-container'>
                 <h2 className='question-title'>{textFinal === undefined ? 'Que faire?' : ''}</h2>
                 <p className='endText'>{textFinal === undefined ? '' : textFinal}</p>
