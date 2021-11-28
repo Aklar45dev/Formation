@@ -24,6 +24,7 @@ time, mark, audio, video {
         -ms-user-select: none; /* Internet Explorer/Edge */
             user-select: none; /* Non-prefixed version, currently
                                   supported by Chrome, Edge, Opera and Firefox */
+  -webkit-tap-highlight-color:  rgba(255, 255, 255, 0); 
 }
 
 .iconThumbnail{
@@ -1274,6 +1275,7 @@ label{
   display: block;
   z-index: 900;
   right: 0;
+  padding-right: 1em;
   box-shadow: -3px 3px 40px #000;
   pointer-events: none;
 }
