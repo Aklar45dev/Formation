@@ -53,10 +53,12 @@ const VideoPlayer = ({src, title, arbo1, arbo2, setScore, textNote}) => {
         videoEnded = true
         $('#Choix-container').css({'display': 'flex'})
         $('#freeze').fadeOut(0).fadeIn(1000)
+        $('#mainVideo').fadeOut(0)
     }
 
     const SetVideoResponseSRC = (newSrc, textFinal) => {
         showLoading()
+        $('#mainVideo').fadeIn(0)
         setNewVideoSrc(newSrc)
         setArbo(arbo2)
         setTextFinal(textFinal)

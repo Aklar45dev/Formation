@@ -24,9 +24,11 @@ const Module = () => {
         firebase.auth().onAuthStateChanged(user => {
             db.collection("profiles").get().then((querySnapshot) => {
                 querySnapshot.forEach((doc) => {
-                  if(user.email === doc.data().email){
-                    setProfile(doc.data())
-                  }
+                    if(user !== null || undefined){
+                        if(user.email === doc.data().email){
+                          setProfile(doc.data())
+                        }
+                    }
                 });
             });
           })

@@ -52,7 +52,8 @@ time, mark, audio, video {
 .question-title{
   font-size: 3em;
   color: rgb(255, 255, 255);
-  padding-bottom: 0.5em;
+  padding-bottom: 0em;
+  padding-top: 45%;
 }
 
 .Échoué{
@@ -491,18 +492,19 @@ progress::-webkit-progress-value {
 
 
 .loginGrid{
-  padding-top: 2em;
+  padding-top: 1em;
   background-color: #111111;
   border-radius: 60px;
   display: flex;
   flex-direction: column;
-  margin-left: 30%;
-  margin-right: 30%;
+  margin-left: 20%;
+  margin-right: 20%;
   grid-template-columns: 1fr;
   grid-template-rows: 50vh;
   align-items: center;
   justify-items: center;
-  margin-top: 7em;
+  margin-top: 4em;
+  margin-bottom: 4em;
 }
 
 .logLabel{
@@ -816,12 +818,14 @@ a {
   border-radius: 0.1em;
   color: rgb(0, 0, 0);
   background-color:rgba(255, 255, 255, 255);
-  font-size: 1.5em;
+  font-size: 1.3em;
   border: 1px solid rgb(207, 207, 207);
-  font-weight: 600;
+  font-weight: 500;
   outline: none;
   cursor: pointer;
   border-radius: 15px;
+  padding: 0.2em;
+
   padding-right: 0.5em;
   padding-left: 0.5em;
   width: -webkit-fill-available;
@@ -999,8 +1003,8 @@ a {
 }
 
 .imgBG{
-  position: absolute;
-  z-index: -10;
+  position: fixed;
+  z-index: -1;
   opacity: 0.55;
   height: auto;
   width: 100%;
@@ -1725,7 +1729,7 @@ label{
     padding-right: 0em;
     padding-top: 2em;
     padding-bottom: 2em;
-    background-image: radial-gradient(rgba(0, 0, 0, 0.61) 0%, rgba(0, 0, 0, 0.415) 40%, transparent 60%);
+    background-image: radial-gradient(rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.15) 40%, transparent 100%);
     transform: scale(0.6);
   }
 
@@ -1779,7 +1783,7 @@ label{
 
   #Choix-container{
     display: none;
-    position: absolute;
+    position: relative;
     width: 100%;
     flex-direction: column;
     align-items: center;
@@ -1810,8 +1814,8 @@ label{
   .question-title{
     font-size: 3em;
     color: rgb(255, 255, 255);
-    padding-bottom: 1.5em;
-    padding-top: 1.7em;
+    padding-bottom: 1.25em;
+    padding-top: 1.5em;
   }
 
   .iconThumbnail{
