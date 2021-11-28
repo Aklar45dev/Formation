@@ -84,26 +84,26 @@ const App = () => {
         <div id='sideBar-container'>
           <div className='item-container'>
             {email === 'admin@gmail.com' ? <div className='item-row' onClick={() => toggleMenu()}>
-              <img alt="img" src='./images/admin.png' />
+              <img alt="img" src='../images/admin.png' />
               <Link className="menu-text" to="/dashboard">Administrateur</Link>
             </div> : <div/>}
             <div className='item-row' onClick={() => toggleMenu()}>
-              <img alt="img" src='./images/home.png' />
+              <img alt="img" src='../images/home.png' />
               <Link className="menu-text" to="/">Accueil</Link>
             </div>
             <div className='item-row' onClick={() => toggleMenu()}>
-              <img alt="img" src='./images/profil.png' />
+              <img alt="img" src='../images/profil.png' />
               <Link className="menu-text" to={{
                 pathname: "/profile",
                 email: email
                 }}>Profile</Link>
             </div>
             <div className='item-row' onClick={() => toggleMenu()}>
-              <img alt="img" src='./images/play.png' />
+              <img alt="img" src='../images/play.png' />
               <Link className="menu-text" to="/module">Chapitres</Link>
             </div>
             <div className='item-row' onClick={() => toggleMenu()}>
-              <img alt="img" src='./images/login.png' />
+              <img alt="img" src='../images/login.png' />
               <Link to="./login" onClick={() => logout()} className="menu-text">Déconnecter</Link>
             </div>
           </div>

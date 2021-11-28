@@ -17,15 +17,15 @@ const VideoPlayer = ({src, title, arbo1, arbo2, setScore, textNote}) => {
         if(newVideoSrc === '' || newVideoSrc === undefined){
             setArbo(arbo1)
             setNewVideoSrc(src)
-            mouseMove()
             $('#playerControlsContainer').fadeOut(0)
+            $('#timeStampsContainer').fadeOut(0)
 
             if (arbo1[0] !== undefined){
                 setImgSrc(arbo1[0].img)
             }
         }
     }, [arbo1])
-      
+
     const HandlePlay = () => {
         mouseMove()
         if(videoPlaying){
@@ -110,7 +110,8 @@ const VideoPlayer = ({src, title, arbo1, arbo2, setScore, textNote}) => {
 
     const reloadModule = () => {
         if(textFinal === "Mauvaise réponse!"){
-            window.location.reload()
+            //window.location.reload()
+            window.location.href = `/module/${title}`
         }
     }
 

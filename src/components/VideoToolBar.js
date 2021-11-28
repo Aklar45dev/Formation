@@ -3,8 +3,10 @@ import React, { useEffect } from 'react'
 const VideoToolBar = (props) => {
     useEffect(() => {
         const interval = setInterval(() => {
-            let mins = Math.floor((document.getElementById("mainVideo").duration)/60)
-            let secs = Math.floor((document.getElementById("mainVideo").duration)-(60*mins))
+            let mins = 0
+            let secs = 0
+            mins = Math.floor((document.getElementById("mainVideo").duration)/60)
+            secs = Math.floor((document.getElementById("mainVideo").duration)-(60*mins))
             let currentMins = Math.floor((document.getElementById("mainVideo").currentTime)/60)
             let currentSecs = Math.floor((document.getElementById("mainVideo").currentTime)-(60*currentMins))
             if(currentSecs < 10)
@@ -15,10 +17,12 @@ const VideoToolBar = (props) => {
             {
                 secs = `0${secs}`
             }
-            document.getElementById("totalDuration").innerHTML = `${mins}:${secs}`
-            document.getElementById("currentPlayTime").innerHTML = `${currentMins}:${currentSecs}`
-            let timeRatio = ((document.getElementById("mainVideo").currentTime)/(document.getElementById("mainVideo").duration))*100
-            document.getElementById("inside").style.width = `${timeRatio}%`
+            if(!isNaN(document.getElementById("mainVideo").duration)){
+                document.getElementById("totalDuration").innerHTML = `${mins}:${secs}`
+                document.getElementById("currentPlayTime").innerHTML = `${currentMins}:${currentSecs}`
+                let timeRatio = ((document.getElementById("mainVideo").currentTime)/(document.getElementById("mainVideo").duration))*100
+                document.getElementById("inside").style.width = `${timeRatio}%`
+            }
             
         }, 1000)
         return () => {
