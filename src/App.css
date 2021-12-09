@@ -697,7 +697,7 @@ a {
 
 .homeVideo{
   width: 100%;
-  filter: brightness(0.9);
+  filter: brightness(0.75);
 }
 
 .test-validate-btn{
@@ -1018,7 +1018,7 @@ a {
     padding: 0.5em;
     padding-right: 1em;
     padding-left: 1em;
-    padding-bottom: 0.7em;
+    padding-bottom: 0.6em;
     border-radius: 2em;
     cursor: pointer;
     font-weight: 500;
@@ -1820,7 +1820,7 @@ label{
   .question-title{
     font-size: 3em;
     color: rgb(255, 255, 255);
-    padding-bottom: 1.75em;
+    padding-bottom: 1.85em;
     padding-top: 1.5em;
   }
 
