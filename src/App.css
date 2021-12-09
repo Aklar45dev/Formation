@@ -1849,4 +1849,17 @@ label{
   padding-right: 1em;
 }
 
+.menu-container{
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  background-color: rgb(8, 8, 8);
+  display: block;
+  z-index: 900;
+  right: 0;
+  padding-right: 1em;
+  box-shadow: -3px 3px 40px #000;
+  pointer-events: none;
+}
+
 }
