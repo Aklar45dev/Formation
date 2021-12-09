@@ -139,7 +139,7 @@ const VideoPlayer = ({src, title, arbo1, arbo2, setScore, textNote}) => {
                 <h2 className='question-title'>{textFinal === undefined ? 'Que faire?' : ''}</h2>
                 <p className='endText'>{textFinal === undefined ? '' : textFinal}</p>
                 <p className='endTextNote'>{textFinal === undefined ? '' : textNote}</p>
-                {textFinal === undefined ? <img alt='' className='imgBG' id='freeze' src={imgSrc} /> : <button className='continueBtn' onClick={() => reloadModule()}><Link to={textFinal === "Mauvaise réponse!" ? `/module/${title}` : '/module'}>{textFinal === "Mauvaise réponse!" ? "Réessayer" : "Continuer"}</Link></button>}
+                {textFinal === undefined ? <img alt='' className='imgBG' id='freeze' src={imgSrc} /> : <div className='continueBtn noselect' onClick={() => reloadModule()}><Link to={textFinal === "Mauvaise réponse!" ? `/module/${title}` : '/module'}>{textFinal === "Mauvaise réponse!" ? "Réessayer" : "Continuer"}</Link></div>}
                 {textFinal !== undefined ? <div/> : arbo && arbo.map(arbo => <Button text={arbo.text} key={arbo.text} src={arbo.src} fct={SetVideoResponseSRC} textFinal={arbo.textFinal} />)}
             </div>
         </div>
